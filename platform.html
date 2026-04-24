@@ -1,0 +1,878 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>The AI Pentesting Platform · CredShields One</title>
+<meta name="description" content="Full tour of CredShields One: architecture, 5-stage AI + human pentest pipeline, product screens, what we test for, safe-in-production design, integrations, and FAQ." />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<link rel="canonical" href="https://credshields.com/platform" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="CredShields One" />
+<meta property="og:url" content="https://credshields.com/platform" />
+<meta property="og:title" content="The AI Penetration Testing Platform · CredShields One" />
+<meta property="og:description" content="Architecture, pipeline, product screens, and FAQ for CredShields One. AI pentesting with senior human pentesters in the loop." />
+<meta property="og:image" content="https://credshields.com/og-platform.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="The AI Penetration Testing Platform · CredShields One" />
+<meta name="twitter:description" content="Architecture, pipeline, and FAQ for CredShields One. AI pentesting with senior humans in the loop." />
+<meta name="twitter:image" content="https://credshields.com/og-platform.png" />
+
+<!-- Theme + icons -->
+<meta name="theme-color" content="#F4F8F4" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M16 3 L27 8 V16 C27 22 22 27 16 29 C10 27 5 22 5 16 V8 Z' stroke='%232E7D0E' stroke-width='1.8' fill='%23A8FF45'/><path d='M11 16 L14.5 19.5 L21 12' stroke='%230A1A0C' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+<!-- JSON-LD: Breadcrumbs + FAQPage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://credshields.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Platform", "item": "https://credshields.com/platform" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How long does an AI penetration testing engagement take?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Scoping takes a single call. From there, validated findings flow in continuously rather than waiting for a single delivery date. Reports are compiled on demand, so you can export one whenever you need it, without restarting the engagement."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is CredShields One safe to run in production?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, and it is designed that way. Scope is agreed up front and enforced by the platform, not by good intentions. The AI confirms exploitability to the point it's provable and stops there. No destructive actions, no data exfiltration beyond what's needed for proof, and no service disruption."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do we need to give you credentials or code access for AI pentesting?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No, not to start. We begin with a black-box engagement using the same entry points an external attacker has. If you want deeper coverage on authenticated flows or specific business logic, you can grant test credentials or read-only code access. The choice is always yours, and we document what was given and when."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is AI pentesting different from a DAST scanner?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Scanners run a fixed set of checks against known patterns. They don't chain exploits, don't understand your business logic, and flood your team with false positives. CredShields One uses AI to explore your app the way a human attacker would, then a senior human pentester confirms what actually matters. You get findings a scanner can't produce, without the noise a scanner generates."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What happens after the pilot?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "If the pilot delivers value, we move into continuous coverage on the scope we've already agreed. New surfaces such as a new mobile app or a new API extend the engagement rather than restart it. Retests run on demand at no extra charge."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will CredShields train on our data?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Engagement data, findings, and reports stay inside your engagement. They are not used to train models, shared with other customers, or reused in any other way."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who performs the human review of AI pentest findings?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Reviewers are part of the in-house offensive security team. Every engagement has a named reviewer assigned. You'll see their handle on findings, on reports, and on the engagement dashboard."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Figtree:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="site.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site">
+  <div class="container inner">
+    <a href="index.html" class="brand">
+      <span class="brand-mark">
+        <svg viewBox="0 0 32 32" fill="none">
+          <path d="M16 3 L27 8 V16 C27 22 22 27 16 29 C10 27 5 22 5 16 V8 Z"
+                stroke="#2E7D0E" stroke-width="1.8" fill="#A8FF45"/>
+          <path d="M11 16 L14.5 19.5 L21 12" stroke="#0A1A0C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      CredShields
+      <span class="brand-sub">One</span>
+    </a>
+    <ul>
+      <li><a href="index.html#pipeline">How it works</a></li>
+      <li><a href="platform.html" style="color: var(--text); font-weight: 500;">Platform</a></li>
+      <li><a href="index.html#different">Why us</a></li>
+      <li><a href="index.html#what-we-test">What we test</a></li>
+      <li><a href="index.html#team">Team</a></li>
+    </ul>
+    <a href="/request-access" class="nav-cta">
+      Request access
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+</nav>
+
+<main>
+<!-- HERO -->
+<header class="platform-hero">
+  <div class="hero-grid"></div>
+  <div class="container">
+    <span class="eyebrow">/ the platform, end to end</span>
+    <h1 class="display">The AI penetration testing <span class="accent">platform, end to end.</span></h1>
+    <span class="sr-only">CredShields One platform: architecture, continuous AI pentesting pipeline, product screens, vulnerability classes tested, safe-in-production design, integrations, and frequently asked questions.</span>
+    <p class="platform-hero-sub">
+      An architecture view for the CISO, the 5-stage pipeline for the security engineer, product screens for everyone. How CredShields One actually works, what it tests, how it stays safe in production, and where it fits in your workflow.
+    </p>
+    <div class="platform-jumplinks">
+      <a href="#architecture">Architecture</a>
+      <a href="#pipeline">Pipeline</a>
+      <a href="#product">Product</a>
+      <a href="#what-we-test">What we test</a>
+      <a href="#safety">Safety</a>
+      <a href="#integrations">Integrations</a>
+      <a href="#faq">FAQ</a>
+    </div>
+  </div>
+</header>
+
+<!-- ARCHITECTURE -->
+<section class="block" id="architecture" style="padding-top:80px">
+  <div class="container">
+    <div class="section-head reveal" style="text-align:center; margin:0 auto 48px">
+      <span class="eyebrow" style="justify-content:center">/ architecture</span>
+      <h2 class="display" style="margin: 16px auto; max-width: 22ch">Four layers. One signed report.</h2>
+      <p style="margin: 20px auto 0">From your app to the AI, through human review, to delivery. Here's how CredShields One is wired end to end.</p>
+    </div>
+
+    <div class="architecture reveal">
+      <div class="architecture-flow">
+
+        <div class="arch-layer">
+          <div class="arch-layer-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <div class="arch-layer-label">Layer 01</div>
+          <h4>Your surface</h4>
+          <p>Cloud apps, mobile apps, APIs, AI-powered features.</p>
+        </div>
+
+        <div class="arch-arrow">→</div>
+
+        <div class="arch-layer">
+          <div class="arch-layer-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 10v6m11-11h-6M7 12H1"/><path d="m20.49 7.52-4.24 4.24m-8.5 0-4.24 4.24m0-12.72 4.24 4.24m8.5 0 4.24-4.24"/></svg>
+          </div>
+          <div class="arch-layer-label">Layer 02</div>
+          <h4>AI operator</h4>
+          <p>Maps surface, chains exploits, probes logic 24/7.</p>
+        </div>
+
+        <div class="arch-arrow">→</div>
+
+        <div class="arch-layer human">
+          <div class="arch-layer-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="arch-layer-label">Layer 03</div>
+          <h4>Human reviewer</h4>
+          <p>Senior pentester confirms, directs, signs the report.</p>
+        </div>
+
+        <div class="arch-arrow">→</div>
+
+        <div class="arch-layer">
+          <div class="arch-layer-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/><line x1="9" y1="11" x2="15" y2="11"/></svg>
+          </div>
+          <div class="arch-layer-label">Layer 04</div>
+          <h4>Signed delivery</h4>
+          <p>Report, dashboard, Slack, Jira, SIEM export.</p>
+        </div>
+
+      </div>
+      <p class="arch-caption">// every finding passes through layers 02 and 03 before it reaches you</p>
+    </div>
+  </div>
+</section>
+
+<!-- PIPELINE (reused structure) -->
+<section class="block" id="pipeline" style="padding-top:40px">
+  <div class="container">
+    <div class="pipeline-intro reveal">
+      <div>
+        <span class="eyebrow">/ the pipeline, in depth</span>
+        <h2 class="display" style="margin-top:16px">Five stages. Every engagement. Every release.</h2>
+      </div>
+      <p>
+        Each stage is owned by whoever's best at it. The AI handles scale, speed, and endless retesting. Senior pentesters handle the business-logic calls that make findings real.
+      </p>
+    </div>
+
+    <div class="steps">
+
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <div class="step-text">
+          <div class="step-header">
+            <span class="step-stage">Discover</span>
+            <span class="actor-tag ai">AI</span>
+          </div>
+          <h4>See what your attackers see</h4>
+          <p>Point CredShields at a cloud or mobile app. The AI maps every endpoint, auth flow, token type, and exposed surface, the way a real adversary would on day one. <strong>No agent installed, no code access required</strong> to start.</p>
+        </div>
+        <div class="step-viz">
+          <div class="viz-map"></div>
+          <div class="viz-map-labels">
+            <span style="top:22%;left:22%;">/api/auth</span>
+            <span style="top:55%;left:58%;">/v2/users</span>
+            <span style="top:72%;left:32%;">/webhooks</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step reveal">
+        <div class="step-num">02</div>
+        <div class="step-text">
+          <div class="step-header">
+            <span class="step-stage">Continuous AI pentest</span>
+            <span class="actor-tag ai">AI</span>
+          </div>
+          <h4>Test every endpoint, every release</h4>
+          <p>A fleet of offensive agents tests each endpoint via direct API calls, chains exploits across services, and probes business-logic flaws <strong>24/7, not just at quarter-end</strong>. Guardrails keep every action inside your scope.</p>
+        </div>
+        <div class="step-viz">
+          <div class="viz-detect">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step highlight reveal">
+        <div class="step-num">03</div>
+        <div class="step-text">
+          <div class="step-header">
+            <span class="step-stage">Human + AI deep dive</span>
+            <span class="actor-tag hybrid">AI + Human</span>
+          </div>
+          <h4>A human works the case alongside the AI</h4>
+          <p>A senior offensive engineer directs the AI into the places business logic lives, reproduces exploits end-to-end, and adds findings the AI flagged for second-opinion. <strong>The AI brings scale. The human brings tradecraft.</strong> The case gets worked twice as hard.</p>
+        </div>
+        <div class="step-viz">
+          <div class="viz-human">
+            <div class="hr-line confirm">
+              <span class="hr-tag-ok">[✓ confirmed]</span>
+              <span>IDOR · /api/v2/users/{id}</span>
+              <div class="hr-reviewer"><span class="hr-avatar">A</span>@arjun</div>
+            </div>
+            <div class="hr-line reject">
+              <span class="hr-tag-no">[✗ ruled out]</span>
+              <span>XSS · /search?q= (WAF blocks)</span>
+              <div class="hr-reviewer"><span class="hr-avatar">N</span>@neha</div>
+            </div>
+            <div class="hr-line confirm">
+              <span class="hr-tag-ok">[✓ confirmed]</span>
+              <span>Auth bypass · JWT alg:none</span>
+              <div class="hr-reviewer"><span class="hr-avatar">A</span>@arjun</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step reveal">
+        <div class="step-num">04</div>
+        <div class="step-text">
+          <div class="step-header">
+            <span class="step-stage">Compliance-ready report</span>
+            <span class="actor-tag ai">AI</span>
+          </div>
+          <h4>GDPR, SOC 2, ISO 27001, auto-mapped</h4>
+          <p>Findings are auto-compiled into an audit-ready report, mapped to the frameworks your customers ask for. Regenerate anytime. <strong>Sign-off from the reviewer is embedded</strong> in every report export.</p>
+        </div>
+        <div class="step-viz">
+          <div class="viz-report">
+            <div class="report-title">Acme · Q2 Pentest Report</div>
+            <div class="report-badges">
+              <span class="report-badge">GDPR Art. 32</span>
+              <span class="report-badge">SOC 2 CC6.1</span>
+              <span class="report-badge">ISO 27001</span>
+            </div>
+            <div class="report-rows">
+              <div class="report-row"><span class="sev crit">CRIT</span><span>CVSS 9.8 · IDOR + token leak → RCE</span></div>
+              <div class="report-row"><span class="sev high">HIGH</span><span>CVSS 8.1 · Auth bypass · JWT alg:none</span></div>
+              <div class="report-row"><span class="sev med">MED</span><span>CVSS 5.4 · SSRF · /webhooks/proxy</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step reveal">
+        <div class="step-num">05</div>
+        <div class="step-text">
+          <div class="step-header">
+            <span class="step-stage">Retest on demand</span>
+            <span class="actor-tag ai">AI</span>
+          </div>
+          <h4>Ship a fix. Hit retest.</h4>
+          <p>Push a patch and re-run the exact chain that broke you. <strong>No new SoW, no new invoice, no waiting room.</strong> Verifies the fix or tells you what's still exposed.</p>
+        </div>
+        <div class="step-viz">
+          <div class="viz-repeat">
+            <div class="cycle"><span>retest<br/>on commit</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- INSIDE THE PRODUCT (reuses homepage markup) -->
+<section class="block" id="product" style="padding-top:40px">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">/ inside the product</span>
+      <h2 class="display">Every stage has a screen.</h2>
+      <p>Dashboard, finding, retest. Illustrative mockups, built on top of the real product as we onboard design partners.</p>
+    </div>
+
+    <div class="platform-gallery reveal">
+
+      <!-- Engagement overview -->
+      <div class="snippet">
+        <div class="ui-chrome">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <div class="url">one.credshields.io / engagement / <strong>acme-q2-2026</strong></div>
+        </div>
+        <div class="ui-engagement">
+          <div class="ui-engage-head">
+            <div class="ui-engage-title">
+              <h5>Acme Corp · Q2 continuous pentest</h5>
+              <div class="ui-engage-sub">
+                <span>app.acme.io</span><span>·</span>
+                <span>API + Web</span><span>·</span>
+                <span>Started Apr 02</span>
+              </div>
+            </div>
+            <div class="ui-engage-actions">
+              <span class="ui-engage-status">Live</span>
+              <span class="ui-pill">Export report</span>
+              <span class="ui-pill primary">Retest</span>
+            </div>
+          </div>
+          <div class="ui-engage-body">
+            <div class="ui-donut-card">
+              <div class="ui-card-label">// Findings by severity</div>
+              <div class="ui-donut-row">
+                <div class="ui-donut">
+                  <div class="ui-donut-total"><span>23</span><small>Total</small></div>
+                </div>
+                <div class="ui-donut-legend">
+                  <div><span class="ui-dot crit"></span>Critical <strong>5</strong></div>
+                  <div><span class="ui-dot high"></span>High <strong>4</strong></div>
+                  <div><span class="ui-dot med"></span>Medium <strong>8</strong></div>
+                  <div><span class="ui-dot low"></span>Low <strong>6</strong></div>
+                </div>
+              </div>
+            </div>
+            <div class="ui-spark-card">
+              <div class="ui-card-label">// Findings over time</div>
+              <div class="ui-spark">
+                <svg viewBox="0 0 200 70" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="sparkFillP" x1="0" x2="0" y1="0" y2="1">
+                      <stop offset="0%" stop-color="#A8FF45" stop-opacity="0.35"/>
+                      <stop offset="100%" stop-color="#A8FF45" stop-opacity="0"/>
+                    </linearGradient>
+                  </defs>
+                  <path d="M0 52 L22 48 L44 40 L66 44 L88 30 L110 32 L132 22 L154 18 L176 12 L200 8 L200 70 L0 70 Z" fill="url(#sparkFillP)"/>
+                  <path d="M0 52 L22 48 L44 40 L66 44 L88 30 L110 32 L132 22 L154 18 L176 12 L200 8" stroke="#2E7D0E" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+                  <circle cx="200" cy="8" r="3.5" fill="#A8FF45" stroke="#2E7D0E" stroke-width="1.2"/>
+                </svg>
+              </div>
+              <div class="ui-spark-stats">
+                <span>Last 14 days</span>
+                <span><strong>+9</strong> new · <strong>3</strong> critical</span>
+              </div>
+            </div>
+            <div class="ui-reviewer-card">
+              <div class="ui-card-label" style="color:var(--green);">// Assigned reviewer</div>
+              <div class="ui-reviewer">
+                <div class="ui-reviewer-avatar">A</div>
+                <div>
+                  <div class="ui-reviewer-name">Arjun P.</div>
+                  <div class="ui-reviewer-role">Senior offensive engineer</div>
+                </div>
+              </div>
+              <div class="ui-reviewer-note">
+                "Working through the auth-flow chain now. IDOR + token-leak confirmed, prepping fix guidance for the team."
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="snippet-caption">
+          <div>
+            <h4>Engagement overview</h4>
+            <p>One view of a live pentest: severity, trend, and the human on the case.</p>
+          </div>
+          <span class="snippet-tag">Dashboard</span>
+        </div>
+      </div>
+
+      <!-- Two smaller snippets -->
+      <div class="platform-row">
+
+        <div class="snippet">
+          <div class="ui-chrome">
+            <div class="dots"><span></span><span></span><span></span></div>
+            <div class="url">one.credshields.io / finding / <strong>F-0x4a</strong></div>
+          </div>
+          <div class="ui-finding">
+            <div class="ui-finding-head">
+              <span class="ui-sev crit">CRIT</span>
+              <div style="flex:1">
+                <div class="ui-finding-title">IDOR → token leak → RCE chain</div>
+                <div class="ui-finding-meta">
+                  <span>/api/v2/users/{id}</span>
+                  <span>F-0x4a</span>
+                  <span>confirmed</span>
+                </div>
+              </div>
+            </div>
+            <div class="ui-cvss">
+              <div class="ui-cvss-item"><span class="ui-cvss-label">CVSS</span><span class="ui-cvss-value score">9.8</span></div>
+              <div class="ui-cvss-item"><span class="ui-cvss-label">Vector</span><span class="ui-cvss-value">AV:N/AC:L</span></div>
+              <div class="ui-cvss-item"><span class="ui-cvss-label">Impact</span><span class="ui-cvss-value">High</span></div>
+              <div class="ui-cvss-item"><span class="ui-cvss-label">Exploit</span><span class="ui-cvss-value">Proven</span></div>
+            </div>
+            <div class="ui-steps-label">// Repro, 3 steps</div>
+            <div class="ui-steps">
+              <div><span class="cmd">$</span> curl -H "Auth: $TOK" <span class="dim">.../users/2001</span></div>
+              <div><span class="dim">→ 200 OK · user_token leaked in response</span></div>
+              <div><span class="cmd">$</span> curl -H "Auth: $LEAKED" <span class="dim">.../admin/exec</span></div>
+              <div><span class="dim">→ 200 OK · RCE · host: ip-10-0-4-21</span></div>
+            </div>
+            <div class="ui-ai-human-note">
+              <div class="tiny-avatar">A</div>
+              <div><strong>@arjun · reviewer note:</strong> AI flagged the IDOR. I chained it through the admin endpoint. That's where RCE opens up. Fix the ID check <em>and</em> scope the admin token.</div>
+            </div>
+          </div>
+          <div class="snippet-caption">
+            <div>
+              <h4>Finding detail</h4>
+              <p>CVSS, repro steps, and the reviewer's annotation, all in one view.</p>
+            </div>
+            <span class="snippet-tag">Finding</span>
+          </div>
+        </div>
+
+        <div class="snippet">
+          <div class="ui-chrome">
+            <div class="dots"><span></span><span></span><span></span></div>
+            <div class="url">one.credshields.io / retest / <strong>F-0x4a</strong></div>
+          </div>
+          <div class="ui-retest">
+            <div class="ui-retest-head">
+              <div>
+                <h5>Retest · F-0x4a</h5>
+                <div class="ui-retest-commit">commit <strong>4a3f21c</strong> · auth/middleware.ts</div>
+              </div>
+              <span class="ui-engage-status" style="background:rgba(168,255,69,0.26);">Passed</span>
+            </div>
+            <div class="ui-retest-compare">
+              <div class="ui-retest-side before">
+                <div class="ui-retest-label">Before</div>
+                <div class="ui-retest-chain">
+                  <div class="ui-chain-step"><span class="ui-chain-mark">!</span>IDOR · users/{id}</div>
+                  <div class="ui-chain-step"><span class="ui-chain-mark">!</span>token leaked</div>
+                  <div class="ui-chain-step"><span class="ui-chain-mark">!</span>RCE · /admin/exec</div>
+                </div>
+              </div>
+              <div class="ui-retest-arrow">→</div>
+              <div class="ui-retest-side after">
+                <div class="ui-retest-label">After</div>
+                <div class="ui-retest-chain">
+                  <div class="ui-chain-step"><span class="ui-chain-mark">✓</span>ID check enforced</div>
+                  <div class="ui-chain-step"><span class="ui-chain-mark">✓</span>token scope validated</div>
+                  <div class="ui-chain-step"><span class="ui-chain-mark">✓</span>admin endpoint locked</div>
+                </div>
+              </div>
+            </div>
+            <div class="ui-retest-summary">
+              <span>Chain broken at step 1 · <strong>no regressions</strong></span>
+              <span>36s</span>
+            </div>
+          </div>
+          <div class="snippet-caption">
+            <div>
+              <h4>Retest on commit</h4>
+              <p>Push a fix, re-run the exact chain. Verified fast.</p>
+            </div>
+            <span class="snippet-tag">Retest</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE TEST (reused structure) -->
+<section class="block" id="what-we-test" style="padding-top:40px">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">/ what we test for</span>
+      <h2 class="display">The vulnerability classes that actually put you at risk.</h2>
+      <p>We test against the full OWASP and NIST standards, and beyond them, with findings from our own offensive research. Every engagement runs the classes below. Our senior pentesters add depth on top for business logic specific to your app.</p>
+    </div>
+
+    <div class="what-we-test reveal">
+
+      <div class="wwt-card">
+        <div class="wwt-num">01 · AUTH &amp; ACCESS</div>
+        <h4>Who can do what, and how they get in</h4>
+        <ul class="wwt-list">
+          <li>IDOR &amp; BOLA</li>
+          <li>Broken authentication</li>
+          <li>JWT flaws (alg confusion, weak keys)</li>
+          <li>OAuth / SSO misconfiguration</li>
+          <li>Privilege escalation</li>
+          <li>Session fixation &amp; hijacking</li>
+        </ul>
+      </div>
+
+      <div class="wwt-card">
+        <div class="wwt-num">02 · INJECTION &amp; EXECUTION</div>
+        <h4>Inputs that get turned into code</h4>
+        <ul class="wwt-list">
+          <li>SQL injection (all flavors)</li>
+          <li>SSRF &amp; blind SSRF</li>
+          <li>Command &amp; OS injection</li>
+          <li>Server-side template injection</li>
+          <li>XXE &amp; unsafe deserialization</li>
+          <li>Full RCE chains</li>
+        </ul>
+      </div>
+
+      <div class="wwt-card">
+        <div class="wwt-num">03 · BUSINESS LOGIC</div>
+        <h4>Flaws scanners can't understand</h4>
+        <ul class="wwt-list">
+          <li>Race conditions</li>
+          <li>Workflow &amp; state-machine abuse</li>
+          <li>Payment &amp; pricing tampering</li>
+          <li>Multi-step logic bypass</li>
+          <li>Rate-limit &amp; quota abuse</li>
+          <li>Tenant isolation gaps</li>
+        </ul>
+      </div>
+
+      <div class="wwt-card">
+        <div class="wwt-num">04 · API &amp; MOBILE</div>
+        <h4>The surface your app really is</h4>
+        <ul class="wwt-list">
+          <li>BFLA &amp; object-property auth flaws</li>
+          <li>GraphQL query abuse</li>
+          <li>Mass assignment</li>
+          <li>Insecure mobile storage &amp; IPC</li>
+          <li>Binary-level reverse engineering</li>
+          <li>Certificate &amp; pinning issues</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <p class="wwt-note">// plus prompt injection, agent manipulation, RAG leakage, and guardrail bypass on <strong>AI-powered features</strong></p>
+  </div>
+</section>
+
+<!-- SAFE IN PRODUCTION (expanded) -->
+<section class="block" id="safety" style="padding-top:40px">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">/ safety</span>
+      <h2 class="display">Safe to run in production. By design.</h2>
+      <p>Production is where attackers attack. It's also where your customers live. Our answer to that tension: scope you control, exploits we prove (not cause), and data that never leaves your boundary.</p>
+    </div>
+
+    <div class="safe-grid">
+
+      <div class="safe-card reveal">
+        <div class="safe-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 11V7a4 4 0 0 1 8 0v4"/><rect x="3" y="11" width="18" height="11" rx="2"/></svg>
+        </div>
+        <h3>Scoped, not wild</h3>
+        <p>Every engagement starts with a <strong>scoping call and a written scope document</strong>. Our AI operates inside those boundaries. Out-of-scope endpoints, assets, and data are off-limits by construction, not by promise.</p>
+      </div>
+
+      <div class="safe-card reveal">
+        <div class="safe-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3>Exploit proven, no damage done</h3>
+        <p>We confirm exploitability to the point it's provable. We don't go further. <strong>No destructive actions, no data exfiltration beyond what's needed for proof</strong>, no service disruption. Writes are simulated where possible.</p>
+      </div>
+
+      <div class="safe-card reveal">
+        <div class="safe-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <h3>Your data stays yours</h3>
+        <p>Only the evidence needed to prove a finding is captured, and it's scoped to what the report requires. <strong>No training on customer data.</strong> No secondary uses. Your engagements feed your reports, period.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- INTEGRATIONS -->
+<section class="block" id="integrations" style="padding-top:40px">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">/ integrations &amp; workflow</span>
+      <h2 class="display">Fits where your team already lives.</h2>
+      <p>Findings should land in the channels your team already watches. Retests should run when your build runs. Reports should export to whatever your compliance tooling expects.</p>
+    </div>
+
+    <div class="integrations-grid reveal">
+
+      <div class="integration">
+        <div class="integration-logo">S</div>
+        <div class="integration-body">
+          <h4>Slack</h4>
+          <p>New critical finding? Retest result? It pings the channel you choose.</p>
+        </div>
+      </div>
+
+      <div class="integration">
+        <div class="integration-logo">J</div>
+        <div class="integration-body">
+          <h4>Jira</h4>
+          <p>Every confirmed finding opens a ticket with repro steps and fix guidance.</p>
+        </div>
+      </div>
+
+      <div class="integration">
+        <div class="integration-logo">L</div>
+        <div class="integration-body">
+          <h4>Linear</h4>
+          <p>Same, for teams that moved off Jira.</p>
+        </div>
+      </div>
+
+      <div class="integration">
+        <div class="integration-logo">G</div>
+        <div class="integration-body">
+          <h4>GitHub</h4>
+          <p>Finding references the commit and the code path. Retest links the fix PR.</p>
+        </div>
+      </div>
+
+      <div class="integration">
+        <span class="integration-soon">soon</span>
+        <div class="integration-logo">C</div>
+        <div class="integration-body">
+          <h4>CI/CD</h4>
+          <p>Run a pentest on every merge. Fail the build on critical findings.</p>
+        </div>
+      </div>
+
+      <div class="integration">
+        <span class="integration-soon">soon</span>
+        <div class="integration-logo">⎙</div>
+        <div class="integration-body">
+          <h4>SIEM export</h4>
+          <p>Findings streamed to your SIEM for correlation with runtime alerts.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="block" id="faq" style="padding-top:40px">
+  <div class="container">
+    <div class="section-head reveal" style="text-align:center; margin:0 auto 48px">
+      <span class="eyebrow" style="justify-content:center">/ frequently asked</span>
+      <h2 class="display" style="margin: 16px auto; max-width: 22ch">The questions every buyer asks.</h2>
+    </div>
+
+    <div class="faq reveal">
+
+      <details class="faq-item">
+        <summary>How long does an engagement take?</summary>
+        <p>Scoping takes a single call. From there, you'll see validated findings flowing in continuously rather than waiting for a single delivery date. <strong>Reports are compiled on demand</strong>, so you can export one whenever you need it, without restarting the engagement.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Is it really safe to run in production?</summary>
+        <p>Yes, and it's designed that way. Scope is agreed up front and enforced by the platform, not by good intentions. Our AI confirms exploitability to the point it's provable and stops there. <strong>No destructive actions, no data exfiltration beyond what's needed for proof, no service disruption.</strong> Details in the <a href="#safety" style="color:var(--green); text-decoration:underline;">safety section</a>.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Do we need to give you credentials or code access?</summary>
+        <p>No, not to start. We begin with a black-box engagement using the same entry points an external attacker has. If you want deeper coverage on authenticated flows or specific business logic, you can grant test credentials or read-only code access. <strong>The choice is always yours, and we document what was given and when.</strong></p>
+      </details>
+
+      <details class="faq-item">
+        <summary>How is this different from a DAST scanner?</summary>
+        <p>Scanners run a fixed set of checks against known patterns. They don't chain exploits, don't understand your business logic, and flood your team with false positives. CredShields One uses AI to explore your app the way a human attacker would, then a senior human pentester confirms what actually matters. <strong>You get findings a scanner can't produce, without the noise a scanner generates.</strong></p>
+      </details>
+
+      <details class="faq-item">
+        <summary>What happens after the pilot?</summary>
+        <p>If the pilot delivers value, we move into continuous coverage on the scope we've already agreed. New surfaces (a new mobile app, a new API) extend the engagement rather than restart it. <strong>Retests run on demand at no extra charge.</strong></p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Will it train on our data?</summary>
+        <p><strong>No.</strong> Engagement data, findings, and reports stay inside your engagement. They're not used to train models, shared with other customers, or reused in any other way.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Who do the senior human reviewers report to?</summary>
+        <p>Reviewers are part of our in-house offensive security team. Every engagement has a named reviewer assigned. You'll see their handle on findings, on reports, and on the engagement dashboard. <a href="index.html#team" style="color:var(--green); text-decoration:underline;">Meet the team.</a></p>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="container" id="cta">
+  <div class="final reveal">
+    <div class="final-inner">
+      <span class="eyebrow" style="justify-content:center">/ invite-only while we scale</span>
+      <h2>Seen enough. <em>Request access.</em></h2>
+      <p>We're onboarding design partners on cloud and mobile apps. Our AI runs the pentest. Our senior operators work the case alongside it. You'll have validated findings, not months later.</p>
+      <a href="/request-access" class="btn-primary">
+        Request access
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="foot-top">
+      <div class="foot-col foot-brand">
+        <a href="index.html" class="brand">
+          <span class="brand-mark">
+            <svg viewBox="0 0 32 32" fill="none">
+              <path d="M16 3 L27 8 V16 C27 22 22 27 16 29 C10 27 5 22 5 16 V8 Z" stroke="#2E7D0E" stroke-width="1.8" fill="#A8FF45"/>
+              <path d="M11 16 L14.5 19.5 L21 12" stroke="#0A1A0C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          CredShields
+          <span class="brand-sub">One</span>
+        </a>
+        <p>AI speed. Human depth. Continuous penetration testing for cloud, mobile, and APIs.</p>
+        <div class="socials">
+          <a href="#" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 3H22l-7.6 8.7L23 21h-6.8l-5.3-6.9L4.7 21H1.6l8.1-9.3L1 3h6.9l4.8 6.4L18.9 3Zm-1.2 16h1.9L7.4 4.9H5.4L17.7 19Z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.8h.1c.5-1 1.9-2 3.9-2 4.2 0 5 2.7 5 6.3V21h-4v-5.3c0-1.3 0-3-1.8-3-1.9 0-2.1 1.4-2.1 2.9V21H10V9Z"/></svg></a>
+          <a href="#" aria-label="GitHub"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.4-1.1.7-1.4-2.2-.2-4.6-1.1-4.6-5a4 4 0 0 1 1-2.8c-.1-.3-.4-1.3.1-2.6 0 0 .8-.3 2.7 1a9.3 9.3 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.3.2 2.3.1 2.6a4 4 0 0 1 1 2.8c0 3.9-2.4 4.8-4.6 5 .4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"/></svg></a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Platform</h4>
+        <ul>
+          <li><a href="platform.html#pipeline">How it works</a></li>
+          <li><a href="platform.html#product">Inside the platform</a></li>
+          <li><a href="platform.html#what-we-test">What we test</a></li>
+          <li><a href="platform.html#safety">Safety</a></li>
+          <li><a href="platform.html#integrations">Integrations</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Cloud app pentest</a></li>
+          <li><a href="#">Mobile app pentest</a></li>
+          <li><a href="#">API pentest</a></li>
+          <li><a href="#">AI app pentest</a></li>
+          <li><a href="/request-access">Request access</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Labs</a></li>
+          <li><a href="#">Exploit registry</a></li>
+          <li><a href="#">Buyer's guide</a></li>
+          <li><a href="#">Docs</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="index.html#team">Team</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Security</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 CredShields Technologies · Built by hackers, for teams that ship fast.</div>
+      <div class="legal">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Security</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
