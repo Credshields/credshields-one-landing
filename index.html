@@ -98,7 +98,7 @@
       <li><a href="#what-we-test">What we test</a></li>
       <li><a href="#team">Team</a></li>
     </ul>
-    <a href="#cta" class="nav-cta">
+    <a href="" onclick="openRequestModal(); return false;" class="nav-cta">
       Request access
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
     </a>
@@ -123,7 +123,7 @@
         CredShields One is an AI penetration testing platform for cloud and mobile apps. An AI operator attacks your apps continuously. Senior human pentesters direct the hunt, confirm exploits, and sign the report before it reaches you.
       </p>
       <div class="hero-ctas">
-        <a href="#cta" class="btn-primary">
+        <a href="" onclick="openRequestModal(); return false;" class="btn-primary">
           Request access
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
@@ -137,23 +137,8 @@
       </div>
     </div>
 
-    <div class="terminal" aria-hidden="true">
-      <div class="scan"></div>
-      <div class="terminal-bar">
-        <span class="dot dot-r"></span>
-        <span class="dot dot-y"></span>
-        <span class="dot dot-g"></span>
-        <span class="terminal-title">~/credshields-one/engagement/acme · zsh</span>
-      </div>
-      <div class="terminal-body">
-        <div class="tl-line"><span class="tl-prompt">$</span><span class="tl-text">cs-one pentest --target app.acme.io --scope cloud,api</span></div>
-        <div class="tl-line"><span class="tl-stage">[recon]</span><span class="tl-text">mapped 1,284 endpoints · 27 auth flows</span></div>
-        <div class="tl-line"><span class="tl-stage">[ai-attack]</span><span class="tl-text">chained 14 exploits · 3 business-logic flaws</span></div>
-        <div class="tl-line"><span class="tl-stage">[human]</span><span class="tl-human">reviewed by @arjun · 2 confirmed, 1 ruled out</span></div>
-        <div class="tl-line"><span class="tl-stage">[report]</span><span class="tl-text"><span class="tl-tag">GDPR</span><span class="tl-tag">SOC 2</span>export ready · 9 pages</span></div>
-        <div class="tl-line"><span class="tl-stage">[retest]</span><span class="tl-ok">patch verified · 0 regressions</span></div>
-        <div class="tl-line"><span class="tl-prompt">$</span><span class="caret"></span></div>
-      </div>
+    <div class="ascii-animation-wrap" aria-hidden="true">
+      <canvas id="ascii-animation-canvas"></canvas>
     </div>
   </div>
 </header>
@@ -389,91 +374,9 @@
 
     <div class="platform-gallery reveal">
 
-      <!-- SNIPPET 1: Engagement overview (full width) -->
+      <!-- SCREENSHOT 1: full width -->
       <div class="snippet">
-        <div class="ui-chrome">
-          <div class="dots"><span></span><span></span><span></span></div>
-          <div class="url">one.credshields.io / engagement / <strong>acme-q2-2026</strong></div>
-        </div>
-        <div class="ui-engagement">
-          <div class="ui-engage-head">
-            <div class="ui-engage-title">
-              <h5>Acme Corp · Q2 continuous pentest</h5>
-              <div class="ui-engage-sub">
-                <span>app.acme.io</span>
-                <span>·</span>
-                <span>API + Web</span>
-                <span>·</span>
-                <span>Started Apr 02</span>
-              </div>
-            </div>
-            <div class="ui-engage-actions">
-              <span class="ui-engage-status">Live</span>
-              <span class="ui-pill">Export report</span>
-              <span class="ui-pill primary">Retest</span>
-            </div>
-          </div>
-
-          <div class="ui-engage-body">
-
-            <!-- Donut -->
-            <div class="ui-donut-card">
-              <div class="ui-card-label">// Findings by severity</div>
-              <div class="ui-donut-row">
-                <div class="ui-donut">
-                  <div class="ui-donut-total"><span>23</span><small>Total</small></div>
-                </div>
-                <div class="ui-donut-legend">
-                  <div><span class="ui-dot crit"></span>Critical <strong>5</strong></div>
-                  <div><span class="ui-dot high"></span>High <strong>4</strong></div>
-                  <div><span class="ui-dot med"></span>Medium <strong>8</strong></div>
-                  <div><span class="ui-dot low"></span>Low <strong>6</strong></div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Sparkline -->
-            <div class="ui-spark-card">
-              <div class="ui-card-label">// Findings over time</div>
-              <div class="ui-spark">
-                <svg viewBox="0 0 200 70" preserveAspectRatio="none">
-                  <defs>
-                    <linearGradient id="sparkFill" x1="0" x2="0" y1="0" y2="1">
-                      <stop offset="0%" stop-color="#A8FF45" stop-opacity="0.35"/>
-                      <stop offset="100%" stop-color="#A8FF45" stop-opacity="0"/>
-                    </linearGradient>
-                  </defs>
-                  <path d="M0 52 L22 48 L44 40 L66 44 L88 30 L110 32 L132 22 L154 18 L176 12 L200 8 L200 70 L0 70 Z"
-                        fill="url(#sparkFill)"/>
-                  <path d="M0 52 L22 48 L44 40 L66 44 L88 30 L110 32 L132 22 L154 18 L176 12 L200 8"
-                        stroke="#2E7D0E" stroke-width="1.6" fill="none" stroke-linecap="round"/>
-                  <circle cx="200" cy="8" r="3.5" fill="#A8FF45" stroke="#2E7D0E" stroke-width="1.2"/>
-                </svg>
-              </div>
-              <div class="ui-spark-stats">
-                <span>Last 14 days</span>
-                <span><strong>+9</strong> new · <strong>3</strong> critical</span>
-              </div>
-            </div>
-
-            <!-- Reviewer -->
-            <div class="ui-reviewer-card">
-              <div class="ui-card-label" style="color:var(--green);">// Assigned reviewer</div>
-              <div class="ui-reviewer">
-                <div class="ui-reviewer-avatar">A</div>
-                <div>
-                  <div class="ui-reviewer-name">Arjun P.</div>
-                  <div class="ui-reviewer-role">Senior offensive engineer</div>
-                </div>
-              </div>
-              <div class="ui-reviewer-note">
-                "Working through the auth-flow chain now. IDOR + token-leak confirmed, prepping fix guidance for the team."
-              </div>
-            </div>
-
-          </div>
-        </div>
-
+        <img src="images/credshields_platform_1.png" alt="CredShields One platform — engagement overview" class="platform-screenshot">
         <div class="snippet-caption">
           <div>
             <h4>Engagement overview</h4>
@@ -483,61 +386,11 @@
         </div>
       </div>
 
-      <!-- Row 2: two smaller snippets -->
+      <!-- Row 2: two screenshots -->
       <div class="platform-row">
 
-        <!-- SNIPPET 2: Finding detail -->
         <div class="snippet">
-          <div class="ui-chrome">
-            <div class="dots"><span></span><span></span><span></span></div>
-            <div class="url">one.credshields.io / finding / <strong>F-0x4a</strong></div>
-          </div>
-          <div class="ui-finding">
-            <div class="ui-finding-head">
-              <span class="ui-sev crit">CRIT</span>
-              <div style="flex:1">
-                <div class="ui-finding-title">IDOR → token leak → RCE chain</div>
-                <div class="ui-finding-meta">
-                  <span>/api/v2/users/{id}</span>
-                  <span>F-0x4a</span>
-                  <span>confirmed</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="ui-cvss">
-              <div class="ui-cvss-item">
-                <span class="ui-cvss-label">CVSS</span>
-                <span class="ui-cvss-value score">9.8</span>
-              </div>
-              <div class="ui-cvss-item">
-                <span class="ui-cvss-label">Vector</span>
-                <span class="ui-cvss-value">AV:N/AC:L</span>
-              </div>
-              <div class="ui-cvss-item">
-                <span class="ui-cvss-label">Impact</span>
-                <span class="ui-cvss-value">High</span>
-              </div>
-              <div class="ui-cvss-item">
-                <span class="ui-cvss-label">Exploit</span>
-                <span class="ui-cvss-value">Proven</span>
-              </div>
-            </div>
-
-            <div class="ui-steps-label">// Repro, 3 steps</div>
-            <div class="ui-steps">
-              <div><span class="cmd">$</span> curl -H "Auth: $TOK" <span class="dim">.../users/2001</span></div>
-              <div><span class="dim">→ 200 OK · user_token leaked in response</span></div>
-              <div><span class="cmd">$</span> curl -H "Auth: $LEAKED" <span class="dim">.../admin/exec</span></div>
-              <div><span class="dim">→ 200 OK · RCE · host: ip-10-0-4-21</span></div>
-            </div>
-
-            <div class="ui-ai-human-note">
-              <div class="tiny-avatar">A</div>
-              <div><strong>@arjun · reviewer note:</strong> AI flagged the IDOR. I chained it through the admin endpoint. That's where RCE opens up. Fix the ID check <em>and</em> scope the admin token.</div>
-            </div>
-          </div>
-
+          <img src="images/credshields_platform_2.png" alt="CredShields One platform — finding detail" class="platform-screenshot">
           <div class="snippet-caption">
             <div>
               <h4>Finding detail</h4>
@@ -547,47 +400,10 @@
           </div>
         </div>
 
-        <!-- SNIPPET 3: Retest view -->
         <div class="snippet">
-          <div class="ui-chrome">
-            <div class="dots"><span></span><span></span><span></span></div>
-            <div class="url">one.credshields.io / retest / <strong>F-0x4a</strong></div>
+          <div class="platform-screenshot-scroll">
+            <img src="images/credshields_platform_3.png" alt="CredShields One platform — retest view" class="platform-screenshot">
           </div>
-          <div class="ui-retest">
-            <div class="ui-retest-head">
-              <div>
-                <h5>Retest · F-0x4a</h5>
-                <div class="ui-retest-commit">commit <strong>4a3f21c</strong> · auth/middleware.ts</div>
-              </div>
-              <span class="ui-engage-status" style="background:rgba(168,255,69,0.26);">Passed</span>
-            </div>
-
-            <div class="ui-retest-compare">
-              <div class="ui-retest-side before">
-                <div class="ui-retest-label">Before</div>
-                <div class="ui-retest-chain">
-                  <div class="ui-chain-step"><span class="ui-chain-mark">!</span>IDOR · users/{id}</div>
-                  <div class="ui-chain-step"><span class="ui-chain-mark">!</span>token leaked</div>
-                  <div class="ui-chain-step"><span class="ui-chain-mark">!</span>RCE · /admin/exec</div>
-                </div>
-              </div>
-              <div class="ui-retest-arrow">→</div>
-              <div class="ui-retest-side after">
-                <div class="ui-retest-label">After</div>
-                <div class="ui-retest-chain">
-                  <div class="ui-chain-step"><span class="ui-chain-mark">✓</span>ID check enforced</div>
-                  <div class="ui-chain-step"><span class="ui-chain-mark">✓</span>token scope validated</div>
-                  <div class="ui-chain-step"><span class="ui-chain-mark">✓</span>admin endpoint locked</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="ui-retest-summary">
-              <span>Chain broken at step 1 · <strong>no regressions</strong></span>
-              <span>36s</span>
-            </div>
-          </div>
-
           <div class="snippet-caption">
             <div>
               <h4>Retest on commit</h4>
@@ -1026,7 +842,7 @@
       <span class="eyebrow" style="justify-content:center">/ invite-only while we scale</span>
       <h2>Put the AI on your apps. <em>Put us on the case.</em></h2>
       <p>We're onboarding design partners on cloud and mobile apps. Our AI runs the pentest. Our senior operators work the case alongside it. You'll have validated findings, not months later.</p>
-      <a href="/request-access" class="btn-primary">
+      <a href="" onclick="openRequestModal(); return false;" class="btn-primary">
         Request access
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
@@ -1053,9 +869,11 @@
         </a>
         <p>AI speed. Human depth. Continuous penetration testing for cloud, mobile, and APIs.</p>
         <div class="socials">
-          <a href="#" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 3H22l-7.6 8.7L23 21h-6.8l-5.3-6.9L4.7 21H1.6l8.1-9.3L1 3h6.9l4.8 6.4L18.9 3Zm-1.2 16h1.9L7.4 4.9H5.4L17.7 19Z"/></svg></a>
-          <a href="#" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.8h.1c.5-1 1.9-2 3.9-2 4.2 0 5 2.7 5 6.3V21h-4v-5.3c0-1.3 0-3-1.8-3-1.9 0-2.1 1.4-2.1 2.9V21H10V9Z"/></svg></a>
-          <a href="#" aria-label="GitHub"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.4-1.1.7-1.4-2.2-.2-4.6-1.1-4.6-5a4 4 0 0 1 1-2.8c-.1-.3-.4-1.3.1-2.6 0 0 .8-.3 2.7 1a9.3 9.3 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.3.2 2.3.1 2.6a4 4 0 0 1 1 2.8c0 3.9-2.4 4.8-4.6 5 .4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"/></svg></a>
+          <a href="https://t.me/solidityscan" target="_blank" rel="noopener" aria-label="Telegram"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0Zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.32 14.443l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.828.116Z"/></svg></a>
+          <a href="https://discord.com/invite/9HhV4hGENw" target="_blank" rel="noopener" aria-label="Discord"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03ZM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418Zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418Z"/></svg></a>
+          <a href="https://blog.solidityscan.com/" target="_blank" rel="noopener" aria-label="Medium"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M13.54 12a6.8 6.8 0 0 1-6.77 6.82A6.8 6.8 0 0 1 0 12a6.8 6.8 0 0 1 6.77-6.82A6.8 6.8 0 0 1 13.54 12Zm7.42 0c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12Z"/></svg></a>
+          <a href="https://x.com/CredShields" target="_blank" rel="noopener" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 3H22l-7.6 8.7L23 21h-6.8l-5.3-6.9L4.7 21H1.6l8.1-9.3L1 3h6.9l4.8 6.4L18.9 3Zm-1.2 16h1.9L7.4 4.9H5.4L17.7 19Z"/></svg></a>
+          <a href="https://www.instagram.com/credshields/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069ZM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0Zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881Z"/></svg></a>
         </div>
       </div>
       <div class="foot-col">
@@ -1076,7 +894,7 @@
           <li><a href="#">Mobile app pentest</a></li>
           <li><a href="#">API pentest</a></li>
           <li><a href="#">CI/CD pentest<span class="soon-chip">soon</span></a></li>
-          <li><a href="/request-access">Request access</a></li>
+          <li><a href="" onclick="openRequestModal(); return false;">Request access</a></li>
         </ul>
       </div>
       <div class="foot-col">
@@ -1134,6 +952,176 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.hero').classList.add('in');
+  });
+</script>
+<script src="ascii-animation.js" defer></script>
+
+<!-- REQUEST ACCESS MODAL -->
+<div id="request-modal" class="modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeRequestModal()" aria-label="Close">&times;</button>
+
+    <div class="modal-header">
+      <div class="modal-eyebrow">
+        <span class="modal-dot"></span>
+        / invite-only
+      </div>
+      <h2 class="modal-title" id="modal-title">Request <em>access.</em></h2>
+      <p class="modal-subtitle">Tell us a bit about what you ship. If it's a fit, we'll reach out to scope a pilot.</p>
+    </div>
+
+    <form id="request-form" class="modal-body" novalidate>
+      <div class="modal-row">
+        <div class="field-group">
+          <label class="field-label" for="ra-name">Name <span class="field-req">*</span></label>
+          <input id="ra-name" name="firstname" type="text" class="field-input" placeholder="Jane Doe" required>
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="ra-email">Work email <span class="field-req">*</span></label>
+          <input id="ra-email" name="email" type="email" class="field-input" placeholder="jane@company.com" required>
+        </div>
+      </div>
+
+      <div class="modal-row">
+        <div class="field-group">
+          <label class="field-label" for="ra-company">Company <span class="field-req">*</span></label>
+          <input id="ra-company" name="company" type="text" class="field-input" placeholder="Company name" required>
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="ra-role">Your role <span class="field-req">*</span></label>
+          <select id="ra-role" name="jobtitle" class="field-input field-select" required>
+            <option value="" disabled selected>Choose&hellip;</option>
+            <option>CTO</option>
+            <option>CISO</option>
+            <option>Head of Engineering</option>
+            <option>Head of Security</option>
+            <option>Security Engineer</option>
+            <option>Software Engineer</option>
+            <option>Founder / CEO</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="ra-target">What do you want pentested? <span class="field-req">*</span></label>
+        <select id="ra-target" name="pentest_target" class="field-input field-select" required>
+          <option value="" disabled selected>Choose&hellip;</option>
+          <option>Web Application</option>
+          <option>Mobile App (iOS / Android)</option>
+          <option>API</option>
+          <option>Smart Contract</option>
+          <option>Cloud Infrastructure</option>
+          <option>Multiple / Not sure yet</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="ra-notes">Anything else we should know?</label>
+        <textarea id="ra-notes" name="message" class="field-input field-textarea" placeholder="Stack, release cadence, compliance needs, timeline&hellip;"></textarea>
+      </div>
+
+      <button type="submit" class="modal-submit" id="modal-submit-btn">
+        <span class="modal-submit-text">Send request &rarr;</span>
+        <span class="modal-submit-loading" hidden>Sending&hellip;</span>
+      </button>
+
+      <div id="modal-success" class="modal-success" hidden>
+        &check; We'll be in touch soon.
+      </div>
+      <div id="modal-error" class="modal-error" hidden>
+        Something went wrong. Email us at <a href="mailto:x-devs@credshields.com">x-devs@credshields.com</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  // ── CONFIG: fill in your HubSpot portal ID and form GUID ──
+  const HS_PORTAL_ID = 'YOUR_PORTAL_ID';  // e.g. '12345678'
+  const HS_FORM_GUID = 'YOUR_FORM_GUID';  // e.g. 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
+
+  function openRequestModal() {
+    const modal = document.getElementById('request-modal');
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => document.getElementById('ra-name').focus(), 50);
+  }
+
+  function closeRequestModal() {
+    const modal = document.getElementById('request-modal');
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('request-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeRequestModal();
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeRequestModal();
+  });
+
+  document.getElementById('request-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const form = this;
+    const btn  = document.getElementById('modal-submit-btn');
+    const successEl = document.getElementById('modal-success');
+    const errorEl   = document.getElementById('modal-error');
+
+    successEl.hidden = true;
+    errorEl.hidden   = true;
+    form.querySelectorAll('.field-error').forEach(el => el.classList.remove('field-error'));
+
+    const required = ['ra-name', 'ra-email', 'ra-company', 'ra-role', 'ra-target'];
+    let valid = true;
+    required.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el.value.trim()) { el.classList.add('field-error'); valid = false; }
+    });
+    if (!valid) return;
+
+    btn.disabled = true;
+    btn.querySelector('.modal-submit-text').hidden = true;
+    btn.querySelector('.modal-submit-loading').hidden = false;
+
+    const fields = [
+      { name: 'firstname',      value: form.firstname.value.trim() },
+      { name: 'email',          value: form.email.value.trim() },
+      { name: 'company',        value: form.company.value.trim() },
+      { name: 'jobtitle',       value: form.jobtitle.value },
+      { name: 'pentest_target', value: form.pentest_target.value },
+      { name: 'message',        value: form.message.value.trim() },
+    ];
+
+    try {
+      const res = await fetch(
+        `https://api.hsforms.com/submissions/v3/integration/submit/${HS_PORTAL_ID}/${HS_FORM_GUID}`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            fields,
+            context: { pageUri: window.location.href, pageName: document.title },
+          }),
+        }
+      );
+      if (res.ok) {
+        form.reset();
+        btn.hidden = true;
+        successEl.hidden = false;
+      } else {
+        errorEl.hidden = false;
+      }
+    } catch {
+      errorEl.hidden = false;
+    } finally {
+      btn.disabled = false;
+      btn.querySelector('.modal-submit-text').hidden = false;
+      btn.querySelector('.modal-submit-loading').hidden = true;
+    }
   });
 </script>
 </body>
