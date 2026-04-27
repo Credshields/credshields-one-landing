@@ -1,1 +1,21 @@
-<svg fill="#0052CC" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Jira</title><path d="M11.571 11.513H0a5.218 5.218 0 0 0 5.232 5.215h2.13v2.057A5.215 5.215 0 0 0 12.575 24V12.518a1.005 1.005 0 0 0-1.005-1.005zm5.723-5.756H5.736a5.215 5.215 0 0 0 5.215 5.214h2.129v2.058a5.218 5.218 0 0 0 5.215 5.214V6.758a1.001 1.001 0 0 0-1.001-1.001zM23.013 0H11.455a5.215 5.215 0 0 0 5.215 5.215h2.129v2.057A5.215 5.215 0 0 0 24 12.483V1.005A1.001 1.001 0 0 0 23.013 0Z"/></svg>
+<svg width="58" height="58" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="29" cy="29" r="29" fill="white"/>
+<mask id="mask0_24952_17938" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="58" height="58">
+<circle cx="29" cy="29" r="29" fill="white"/>
+</mask>
+<g mask="url(#mask0_24952_17938)">
+<path d="M52.7458 28.0891L31.6953 7.03864L29.6552 5L6.56608 28.0891C5.81131 28.846 5.81131 30.0712 6.56608 30.8265L21.0431 45.303L29.6552 53.9171L52.7458 30.8265C53.5011 30.0712 53.5011 28.846 52.7458 28.0891ZM29.6552 36.6889L22.4246 29.4588L29.6552 22.2262L36.8872 29.4588L29.6552 36.6889Z" fill="#2684FF"/>
+<path d="M29.6578 22.2302C24.924 17.4943 24.8998 9.8242 29.6074 5.06055L13.7812 20.8806L22.3954 29.4947L29.6578 22.2302Z" fill="url(#paint0_linear_24952_17938)"/>
+<path d="M36.9045 29.4395L29.6523 36.69C31.9378 38.9734 33.2232 42.0727 33.2232 45.3042C33.2232 48.5356 31.9378 51.6329 29.6523 53.9183L45.5166 38.0536L36.9045 29.4395Z" fill="url(#paint1_linear_24952_17938)"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_24952_17938" x1="26.5497" y1="16.7328" x2="18.2686" y2="25.0119" gradientUnits="userSpaceOnUse">
+<stop stop-color="#0052CC"/>
+<stop offset="1" stop-color="#2684FF"/>
+</linearGradient>
+<linearGradient id="paint1_linear_24952_17938" x1="32.8498" y1="42.109" x2="41.1144" y2="33.8444" gradientUnits="userSpaceOnUse">
+<stop stop-color="#0052CC"/>
+<stop offset="1" stop-color="#2684FF"/>
+</linearGradient>
+</defs>
+</svg>
