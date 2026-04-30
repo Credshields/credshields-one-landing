@@ -2849,7 +2849,7 @@
   background: linear-gradient(160deg, #0E2412 0%, #0A1A0C 100%);
 }
 
-.hero-grid {
+.hero .hero-grid {
   background-image:
     linear-gradient(to right, rgba(168, 255, 69, 0.04) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(168, 255, 69, 0.04) 1px, transparent 1px);
