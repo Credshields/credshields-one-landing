@@ -454,19 +454,21 @@
   .logos {
     display: flex; align-items: center; justify-content: space-between;
     gap: 40px; flex-wrap: wrap;
-    opacity: 0.7;
   }
   .logo-item {
-    font-family: "Bricolage Grotesque", serif;
-    font-weight: 600;
-    font-size: 22px;
-    letter-spacing: -0.02em;
-    color: var(--text);
-    transition: opacity 0.2s var(--ease), color 0.2s var(--ease);
+    height: 100px;
+    max-width: 160px;
+    width: auto;
+    flex: 0 1 auto;
+    object-fit: contain;
+    filter: grayscale(1);
+    opacity: 0.7;
+    transition: filter 0.2s var(--ease), opacity 0.2s var(--ease);
   }
-  .logo-item.alt { font-style: italic; font-weight: 400; }
-  .logo-item.mono { font-family: "JetBrains Mono", monospace; font-size: 17px; font-weight: 500; }
-  .logo-item:hover { color: var(--green); }
+  .logo-item:hover {
+    filter: grayscale(0);
+    opacity: 1;
+  }
 
   /* SECTION BASE ------------------- */
   section.block { padding: 120px 0; position: relative; }

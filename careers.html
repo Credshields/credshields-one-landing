@@ -3338,6 +3338,84 @@
   transition: gap 0.2s var(--ease);
 }
 .role-item:hover .role-link { gap: 10px; }
+.role-item { cursor: pointer; }
+.roles-loading, .roles-error, .roles-empty {
+  padding: 32px 28px;
+  text-align: center;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.roles-error { color: #b32; }
+
+/* Job detail modal — wider than request-access, scrollable body */
+.modal--job { max-width: 720px; }
+.job-detail { padding: 36px 36px 32px; }
+.job-detail h3 {
+  font-family: "Bricolage Grotesque", serif;
+  font-weight: 600;
+  font-size: 28px;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin: 0 0 12px;
+}
+.job-detail .job-desc { color: var(--text-dim); font-size: 15px; line-height: 1.55; margin: 0 0 18px; }
+.job-detail .job-meta {
+  display: flex; flex-wrap: wrap; gap: 14px;
+  margin-bottom: 24px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  color: var(--text-dim);
+}
+.job-detail .job-meta span {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+.job-detail .job-meta svg { color: var(--green); }
+.job-detail h4 {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin: 22px 0 10px;
+}
+.job-detail ul { list-style: none; padding: 0; margin: 0 0 8px; }
+.job-detail ul li {
+  position: relative;
+  padding: 6px 0 6px 20px;
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.55;
+}
+.job-detail ul li::before {
+  content: "";
+  position: absolute; left: 4px; top: 13px;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+}
+.job-detail .job-apply {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-top: 24px;
+  padding: 13px 22px;
+  background: var(--lime);
+  color: var(--text);
+  border: 1px solid var(--lime);
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  transition: box-shadow 0.2s var(--ease), transform 0.2s var(--ease);
+}
+.job-detail .job-apply:hover { box-shadow: 0 6px 24px var(--green-glow); transform: translateY(-1px); }
+@media (max-width: 560px) {
+  .job-detail { padding: 28px 22px 24px; }
+  .job-detail h3 { font-size: 22px; }
+}
 
 .empty-roles {
   padding: 40px 28px;
@@ -3845,39 +3923,9 @@
       </div>
 
       <h2>Open roles</h2>
-      <!-- PLACEHOLDER: swap for real roles when hiring. If not hiring, leave the empty state below. -->
-      <div class="roles-list">
-        <a href="#" class="role-item">
-          <div>
-            <div class="role-title">Senior Offensive Security Engineer</div>
-            <div class="role-meta">Engineering · Full-time</div>
-          </div>
-          <div class="role-location">Remote (IN / US)</div>
-          <div class="role-link">Open role →</div>
-        </a>
-        <a href="#" class="role-item">
-          <div>
-            <div class="role-title">Platform Engineer (AI + Infra)</div>
-            <div class="role-meta">Engineering · Full-time</div>
-          </div>
-          <div class="role-location">Remote (IN / US)</div>
-          <div class="role-link">Open role →</div>
-        </a>
-        <a href="#" class="role-item">
-          <div>
-            <div class="role-title">Founding Designer</div>
-            <div class="role-meta">Product · Full-time</div>
-          </div>
-          <div class="role-location">Remote</div>
-          <div class="role-link">Open role →</div>
-        </a>
+      <div class="roles-list" id="rolesList" data-state="loading">
+        <div class="roles-loading">Loading open positions…</div>
       </div>
-
-      <!-- Alternative empty state: uncomment and remove the roles list above if not hiring.
-      <div class="empty-roles">
-        <p>We're not actively hiring right now. That said, if you're exceptional at offensive security, applied AI, or building category-defining products, <a href="contact.html">reach out anyway</a>. The best hires usually come from conversations that started before a role was open.</p>
-      </div>
-      -->
 
       <h2>How we hire</h2>
       <p>
@@ -3893,6 +3941,139 @@
 </section>
 
 </main>
+
+<!-- JOB DETAIL MODAL -->
+<div class="modal-backdrop" id="jobModal" role="dialog" aria-modal="true" aria-labelledby="jobModalTitle" aria-hidden="true">
+  <div class="modal modal--job" role="document">
+    <button class="modal-close" aria-label="Close dialog" data-close-job>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="job-detail" id="jobDetail"></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var JOBS_URL = 'https://raw.githubusercontent.com/Credshields/credshields-resources/refs/heads/master/jobs.json';
+  var APPLY_FORM = 'https://form.jotform.com/260766620240048';
+  var listEl = document.getElementById('rolesList');
+  var modal = document.getElementById('jobModal');
+  var detailEl = document.getElementById('jobDetail');
+  var jobsCache = [];
+
+  function escape(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  function renderList(jobs) {
+    listEl.dataset.state = 'ready';
+    if (!jobs.length) {
+      listEl.innerHTML = '<div class="roles-empty">No open positions right now. Email <a href="mailto:careers@credshields.com">careers@credshields.com</a> if you do exceptional work.</div>';
+      return;
+    }
+    listEl.innerHTML = jobs.map(function (j) {
+      return ''
+        + '<a href="javascript:void(0)" class="role-item" data-job-id="' + escape(j.id) + '">'
+        +   '<div>'
+        +     '<div class="role-title">' + escape(j.title) + '</div>'
+        +     '<div class="role-meta">' + escape(j.employment_type || '') + '</div>'
+        +   '</div>'
+        +   '<div class="role-location">' + escape(j.location || '') + '</div>'
+        +   '<div class="role-link">Open role &rarr;</div>'
+        + '</a>';
+    }).join('');
+  }
+
+  function renderDetail(job) {
+    var clockSVG = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>';
+    var pinSVG   = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>';
+    var dollarSVG = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>';
+
+    function bullets(items) {
+      if (!items || !items.length) return '';
+      return '<ul>' + items.map(function (i) { return '<li>' + escape(i) + '</li>'; }).join('') + '</ul>';
+    }
+
+    var meta = '';
+    if (job.employment_type) meta += '<span>' + clockSVG + escape(job.employment_type) + '</span>';
+    if (job.location)        meta += '<span>' + pinSVG  + escape(job.location)        + '</span>';
+    if (job.salary_range)    meta += '<span>' + dollarSVG + escape(job.salary_range)  + '</span>';
+
+    var sections = '';
+    if (job.responsibilities && job.responsibilities.length) {
+      sections += '<h4>Responsibilities</h4>' + bullets(job.responsibilities);
+    }
+    if (job.requirements && job.requirements.length) {
+      sections += '<h4>Requirements</h4>' + bullets(job.requirements);
+    }
+    if (job.nice_to_have && job.nice_to_have.length) {
+      sections += '<h4>Nice to have</h4>' + bullets(job.nice_to_have);
+    }
+
+    var applyUrl = APPLY_FORM + '?role=' + encodeURIComponent(job.title || '');
+
+    detailEl.innerHTML = ''
+      + '<h3 id="jobModalTitle">' + escape(job.title) + '</h3>'
+      + (job.description ? '<p class="job-desc">' + escape(job.description) + '</p>' : '')
+      + (meta ? '<div class="job-meta">' + meta + '</div>' : '')
+      + sections
+      + '<a href="javascript:void(0)" class="job-apply" data-apply-url="' + escape(applyUrl) + '">'
+      +   'Apply now'
+      +   '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>'
+      + '</a>';
+  }
+
+  function openModal(job) {
+    renderDetail(job);
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  // delegate row click -> open detail modal
+  listEl.addEventListener('click', function (e) {
+    var row = e.target.closest('.role-item');
+    if (!row) return;
+    var id = row.dataset.jobId;
+    var job = jobsCache.find(function (j) { return String(j.id) === id; });
+    if (job) openModal(job);
+  });
+
+  // delegate apply click -> open Jotform popup
+  detailEl.addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-apply-url]');
+    if (!btn) return;
+    e.preventDefault();
+    window.open(btn.dataset.applyUrl, '_blank', 'scrollbars=yes,toolbar=no,width=720,height=720');
+  });
+
+  // close handlers
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal || e.target.closest('[data-close-job]')) closeModal();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+  });
+
+  fetch(JOBS_URL)
+    .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(function (jobs) {
+      jobsCache = Array.isArray(jobs) ? jobs : [];
+      renderList(jobsCache);
+    })
+    .catch(function () {
+      listEl.dataset.state = 'error';
+      listEl.innerHTML = '<div class="roles-error">Unable to load positions right now. Please try again later.</div>';
+    });
+})();
+</script>
 
 <!-- REQUEST ACCESS MODAL -->
 <div class="modal-backdrop" id="accessModal" role="dialog" aria-modal="true" aria-labelledby="accessModalTitle" aria-hidden="true">
