@@ -3,3 +3,8 @@
 *.tsx
 Dockerfile
 .dockerignore
+node_modules
+dist
+.git
+.gitignore
+.playwright-mcp
