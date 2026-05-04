@@ -361,46 +361,6 @@
         <div class="step-viz">
           <div class="viz-chrome">
             <span class="dots"><i></i><i></i><i></i></span>
-            <span class="label">PR #2418 · auth-middleware</span>
-            <span class="right">+12 / −3</span>
-          </div>
-          <div class="viz-fix-new">
-            <div class="fix-tree">
-              <div><i></i>auth/</div>
-              <div class="f cur"><i></i>middleware.ts</div>
-              <div class="f"><i></i>session.ts</div>
-              <div class="f"><i></i>tokens.ts</div>
-              <div style="margin-top:6px"><i></i>tests/</div>
-              <div class="f"><i></i>auth.spec.ts</div>
-            </div>
-            <div class="fix-code">
-              <div class="ln"><span class="num">17</span><span class="gut"> </span><span class="src"><span class="kw">export function</span> assert(req) {</span></div>
-              <div class="ln del"><span class="num">18</span><span class="gut">−</span><span class="src">  if (user.id == req.params.id)</span></div>
-              <div class="ln add"><span class="num">18</span><span class="gut">+</span><span class="src">  if (user.id === req.params.id</span></div>
-              <div class="ln add"><span class="num">19</span><span class="gut">+</span><span class="src">      &amp;&amp; user.role.can(<span class="str">'read:self'</span>))</span></div>
-              <div class="ln"><span class="num">20</span><span class="gut"> </span><span class="src">    <span class="kw">return</span> next();</span></div>
-              <div class="ln add"><span class="num">21</span><span class="gut">+</span><span class="src">  audit.log(<span class="str">'auth.scope'</span>, req);</span></div>
-              <div class="ln"><span class="num">22</span><span class="gut"> </span><span class="src">  <span class="kw">throw new</span> Forbidden();</span></div>
-              <span class="stamp">PR ready · 4 tests</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 05 Retest -->
-      <div class="step reveal">
-        <div class="step-num">05</div>
-        <div class="step-text">
-          <div class="step-header">
-            <span class="step-stage">Retest on demand</span>
-            <span class="actor-tag ai">AI</span>
-          </div>
-          <h4>Ship a fix. Hit retest.</h4>
-          <p>Push a patch and re-run the exact chain that broke you. <strong>No new SoW, no new invoice, no waiting room.</strong> Verifies the fix or tells you what's still exposed.</p>
-        </div>
-        <div class="step-viz">
-          <div class="viz-chrome">
-            <span class="dots"><i></i><i></i><i></i></span>
             <span class="label">retest · main · last 7 days</span>
             <span class="right">24 / 7</span>
           </div>
@@ -431,6 +391,47 @@
             <div class="rp-meta">
               <span>retests <b>+24%</b> wk-over-wk</span>
               <span class="live">retesting <b>commit a4f8c1</b></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 05 Retest -->
+      <div class="step reveal">
+        <div class="step-num">05</div>
+        <div class="step-text">
+          <div class="step-header">
+            <span class="step-stage">Retest on demand</span>
+            <span class="actor-tag ai">AI</span>
+          </div>
+          <h4>Ship a fix. Hit retest.</h4>
+          <p>Push a patch and re-run the exact chain that broke you. <strong>No new SoW, no new invoice, no waiting room.</strong> Verifies the fix or tells you what's still exposed.</p>
+        </div>
+        
+        <div class="step-viz">
+          <div class="viz-chrome">
+            <span class="dots"><i></i><i></i><i></i></span>
+            <span class="label">PR #2418 · auth-middleware</span>
+            <span class="right">+12 / −3</span>
+          </div>
+          <div class="viz-fix-new">
+            <div class="fix-tree">
+              <div><i></i>auth/</div>
+              <div class="f cur"><i></i>middleware.ts</div>
+              <div class="f"><i></i>session.ts</div>
+              <div class="f"><i></i>tokens.ts</div>
+              <div style="margin-top:6px"><i></i>tests/</div>
+              <div class="f"><i></i>auth.spec.ts</div>
+            </div>
+            <div class="fix-code">
+              <div class="ln"><span class="num">17</span><span class="gut"> </span><span class="src"><span class="kw">export function</span> assert(req) {</span></div>
+              <div class="ln del"><span class="num">18</span><span class="gut">−</span><span class="src">  if (user.id == req.params.id)</span></div>
+              <div class="ln add"><span class="num">18</span><span class="gut">+</span><span class="src">  if (user.id === req.params.id</span></div>
+              <div class="ln add"><span class="num">19</span><span class="gut">+</span><span class="src">      &amp;&amp; user.role.can(<span class="str">'read:self'</span>))</span></div>
+              <div class="ln"><span class="num">20</span><span class="gut"> </span><span class="src">    <span class="kw">return</span> next();</span></div>
+              <div class="ln add"><span class="num">21</span><span class="gut">+</span><span class="src">  audit.log(<span class="str">'auth.scope'</span>, req);</span></div>
+              <div class="ln"><span class="num">22</span><span class="gut"> </span><span class="src">  <span class="kw">throw new</span> Forbidden();</span></div>
+              <span class="stamp">PR ready · 4 tests</span>
             </div>
           </div>
         </div>

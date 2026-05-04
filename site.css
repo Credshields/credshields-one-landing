@@ -641,7 +641,6 @@
   .step-text p { color: var(--text-dim); font-size: 16px; max-width: 45ch; }
   .step-text strong { color: var(--text); font-weight: 600; }
   .step-viz {
-    width: min(100%, 450px);
     height: 280px;
     border: 1px solid var(--border);
     border-radius: 14px;
