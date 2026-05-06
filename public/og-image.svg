@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">CredShields One social preview</title>
+  <desc id="desc">CredShields One AI penetration testing platform preview image.</desc>
+  <rect width="1200" height="630" fill="#f4f8f4"/>
+  <path d="M0 500 C180 420 330 560 520 470 C710 380 850 440 1200 310 L1200 630 L0 630 Z" fill="#e7f3e7"/>
+  <circle cx="1020" cy="110" r="180" fill="#a8ff45" opacity=".22"/>
+  <circle cx="160" cy="520" r="220" fill="#2e7d0e" opacity=".08"/>
+  <g transform="translate(86 82)">
+    <path d="M80 0 L148 31 V83 C148 133 119 169 80 188 C41 169 12 133 12 83 V31 Z" fill="#a8ff45" stroke="#2e7d0e" stroke-width="8"/>
+    <path d="M50 92 L73 116 L116 61" fill="none" stroke="#0a1a0c" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="86" y="338" fill="#0a1a0c" font-family="Arial, Helvetica, sans-serif" font-size="82" font-weight="800">CredShields One</text>
+  <text x="90" y="414" fill="#2e7d0e" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="700">AI speed. Human depth.</text>
+  <text x="90" y="477" fill="#4a6650" font-family="Arial, Helvetica, sans-serif" font-size="32">Continuous penetration testing for teams that ship fast.</text>
+</svg>

@@ -2727,8 +2727,10 @@
     font-weight: 600;
   }
   .foot-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-  .foot-col a { color: var(--text-dim); font-size: 14px; transition: color 0.2s var(--ease); }
-  .foot-col a:hover { color: var(--green); }
+  .foot-col a,
+  .foot-col button { color: var(--text-dim); font-size: 14px; transition: color 0.2s var(--ease); text-align: left; }
+  .foot-col a:hover,
+  .foot-col button:hover { color: var(--green); }
   .foot-brand p { color: var(--text-dim); font-size: 14px; max-width: 34ch; margin: 16px 0 20px; }
   .socials { display: flex; gap: 8px; }
   .socials a {

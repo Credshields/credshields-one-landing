@@ -13,14 +13,14 @@
 <meta property="og:url" content="https://one.credshields.com/docs" />
 <meta property="og:title" content="Docs · CredShields One" />
 <meta property="og:description" content="Documentation for CredShields One: platform guide, API reference, integrations, and engagement handbook." />
-<meta property="og:image" content="https://one.credshields.com/images/cs_one_black_logo.svg" />
+<meta property="og:image" content="https://one.credshields.com/og-image.svg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Docs · CredShields One" />
 <meta name="twitter:description" content="Documentation for CredShields One: platform guide, API reference, integrations, and engagement handbook." />
-<meta name="twitter:image" content="https://one.credshields.com/images/cs_one_black_logo.svg" />
+<meta name="twitter:image" content="https://one.credshields.com/og-image.svg" />
 
 <meta name="theme-color" content="#F4F8F4" />
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M16 3 L27 8 V16 C27 22 22 27 16 29 C10 27 5 22 5 16 V8 Z' stroke='%232E7D0E' stroke-width='1.8' fill='%23A8FF45'/><path d='M11 16 L14.5 19.5 L21 12' stroke='%230A1A0C' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>" />
@@ -2023,8 +2023,10 @@
     font-weight: 600;
   }
   .foot-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-  .foot-col a { color: var(--text-dim); font-size: 14px; transition: color 0.2s var(--ease); }
-  .foot-col a:hover { color: var(--green); }
+  .foot-col a,
+  .foot-col button { color: var(--text-dim); font-size: 14px; transition: color 0.2s var(--ease); text-align: left; }
+  .foot-col a:hover,
+  .foot-col button:hover { color: var(--green); }
   .foot-brand p { color: var(--text-dim); font-size: 14px; max-width: 34ch; margin: 16px 0 20px; }
   .socials { display: flex; gap: 8px; }
   .socials a {
@@ -3799,15 +3801,15 @@
       <li><a href="index.html#different">Why us</a></li>
       <li><a href="index.html#what-we-test">What we test</a></li>
       <li><a href="index.html#team">Team</a></li>
-      <li class="mobile-only-li"><a href="mailto:hello@credshields.com" data-request-access class="nav-cta-mobile">
+      <li class="mobile-only-li"><button type="button" data-request-access class="nav-cta-mobile">
         Request access
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a></li>
+      </button></li>
     </ul>
-    <a href="mailto:hello@credshields.com" data-request-access class="nav-cta">
+    <button type="button" data-request-access class="nav-cta">
       Request access
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-    </a>
+    </button>
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" type="button">
       <span></span><span></span><span></span>
     </button>
@@ -3982,7 +3984,7 @@
         </button>
 
         <div id="accessError" class="modal-error" hidden>
-          Something went wrong. Email us at <a href="mailto:info@credshields.com">info@credshields.com</a>
+          Something went wrong. Email us at <!--email_off--><a href="mailto:info@credshields.com">info@credshields.com</a><!--/email_off-->
         </div>
       </div>
     </form>
@@ -4032,7 +4034,7 @@
           <li><a href="mobile-app-pentest.html">Mobile app pentest</a></li>
           <li><a href="api-pentest.html">API pentest</a></li>
           <li><a href="llm-pentest.html">LLM pentest</a></li>
-          <li><a href="mailto:hello@credshields.com" data-request-access>Request access</a></li>
+          <li><button type="button" data-request-access>Request access</button></li>
         </ul>
       </div>
       <div class="foot-col">
@@ -4114,7 +4116,7 @@
     window.closeRequestModal = closeModal;
 
     const selectors = [
-      'a[data-request-access]',
+      '[data-request-access]',
       'a[href="#cta"]',
       'a[href="index.html#cta"]'
     ];
@@ -4203,7 +4205,7 @@
     btn.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
   // close when a real link inside the menu is clicked
-  nav.querySelectorAll('ul a').forEach(function (a) {
+  nav.querySelectorAll('ul a, ul button').forEach(function (a) {
     if (a.classList.contains('nav-dropdown-trigger')) return;
     a.addEventListener('click', function () {
       nav.classList.remove('is-open');

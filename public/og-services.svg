@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">CredShields services preview</title>
+  <desc id="desc">Services preview for API, mobile, cloud, and AI app pentesting.</desc>
+  <rect width="1200" height="630" fill="#f4f8f4"/>
+  <text x="86" y="150" fill="#0a1a0c" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="800">Pentesting services</text>
+  <text x="90" y="218" fill="#4a6650" font-family="Arial, Helvetica, sans-serif" font-size="32">API, mobile, cloud, and AI-powered application security.</text>
+  <g fill="#ffffff" stroke="#d8e7d8" stroke-width="3">
+    <rect x="86" y="300" width="235" height="170" rx="20"/>
+    <rect x="351" y="300" width="235" height="170" rx="20"/>
+    <rect x="616" y="300" width="235" height="170" rx="20"/>
+    <rect x="881" y="300" width="235" height="170" rx="20"/>
+  </g>
+  <g fill="#2e7d0e" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="800">
+    <text x="124" y="390">API</text>
+    <text x="389" y="390">Mobile</text>
+    <text x="654" y="390">Cloud</text>
+    <text x="919" y="390">AI apps</text>
+  </g>
+  <rect x="86" y="528" width="360" height="18" rx="9" fill="#a8ff45"/>
+</svg>

@@ -14,7 +14,7 @@
 <meta property="og:url" content="https://one.credshields.com/platform" />
 <meta property="og:title" content="The AI Penetration Testing Platform · CredShields One" />
 <meta property="og:description" content="Architecture, pipeline, product screens, and FAQ for CredShields One. AI pentesting with senior human pentesters in the loop." />
-<meta property="og:image" content="https://one.credshields.com/images/cs_one_black_logo.svg" />
+<meta property="og:image" content="https://one.credshields.com/og-platform.svg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 
@@ -22,7 +22,7 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="The AI Penetration Testing Platform · CredShields One" />
 <meta name="twitter:description" content="Architecture, pipeline, and FAQ for CredShields One. AI pentesting with senior humans in the loop." />
-<meta name="twitter:image" content="https://one.credshields.com/images/cs_one_black_logo.svg" />
+<meta name="twitter:image" content="https://one.credshields.com/og-platform.svg" />
 
 <!-- Theme + icons -->
 <meta name="theme-color" content="#F4F8F4" />
@@ -139,15 +139,15 @@
       <li><a href="index.html#different">Why us</a></li>
       <li><a href="index.html#what-we-test">What we test</a></li>
       <li><a href="index.html#team">Team</a></li>
-      <li class="mobile-only-li"><a href="mailto:hello@credshields.com" data-request-access class="nav-cta-mobile">
+      <li class="mobile-only-li"><button type="button" data-request-access class="nav-cta-mobile">
         Request access
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a></li>
+      </button></li>
     </ul>
-    <a href="mailto:hello@credshields.com" data-request-access class="nav-cta">
+    <button type="button" data-request-access class="nav-cta">
       Request access
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-    </a>
+    </button>
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" type="button">
       <span></span><span></span><span></span>
     </button>
@@ -334,7 +334,7 @@
         </div>
         <div class="step-viz">
           <div class="viz-report">
-            <div class="report-title">Acme · Q2 Pentest Report</div>
+            <div class="report-title">DemoCo · Q2 Pentest Report</div>
             <div class="report-badges">
               <span class="report-badge">GDPR Art. 32</span>
               <span class="report-badge">SOC 2 CC6.1</span>
@@ -655,10 +655,10 @@
       <span class="eyebrow" style="justify-content:center">/ invite-only while we scale</span>
       <h2>Seen enough. <em>Request access.</em></h2>
       <p>We're onboarding design partners on cloud and mobile apps. Our AI runs the pentest. Our senior operators work the case alongside it. You'll have validated findings, not months later.</p>
-      <a href="mailto:hello@credshields.com" data-request-access class="btn-primary">
+      <button type="button" data-request-access class="btn-primary">
         Request access
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
+      </button>
     </div>
   </div>
 </section>
@@ -700,7 +700,7 @@
           <li><a href="mobile-app-pentest.html">Mobile app pentest</a></li>
           <li><a href="api-pentest.html">API pentest</a></li>
           <li><a href="llm-pentest.html">LLM pentest</a></li>
-          <li><a href="mailto:hello@credshields.com" data-request-access>Request access</a></li>
+          <li><button type="button" data-request-access>Request access</button></li>
         </ul>
       </div>
       <div class="foot-col">
@@ -821,7 +821,7 @@
         &check; We'll be in touch soon.
       </div>
       <div id="modal-error" class="modal-error" hidden>
-        Something went wrong. Email us at <a href="mailto:info@credshields.com">info@credshields.com</a>
+        Something went wrong. Email us at <!--email_off--><a href="mailto:info@credshields.com">info@credshields.com</a><!--/email_off-->
       </div>
     </form>
   </div>
@@ -854,7 +854,7 @@
     if (e.key === 'Escape') closeRequestModal();
   });
 
-  document.querySelectorAll('a[data-request-access]').forEach(function(el) {
+  document.querySelectorAll('[data-request-access]').forEach(function(el) {
     el.addEventListener('click', function(e) {
       if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
       e.preventDefault();
@@ -933,7 +933,7 @@
     btn.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
   // close when a real link inside the menu is clicked
-  nav.querySelectorAll('ul a').forEach(function (a) {
+  nav.querySelectorAll('ul a, ul button').forEach(function (a) {
     if (a.classList.contains('nav-dropdown-trigger')) return;
     a.addEventListener('click', function () {
       nav.classList.remove('is-open');
