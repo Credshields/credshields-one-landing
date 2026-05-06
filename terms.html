@@ -404,6 +404,175 @@
     </div>
   </div>
 </main>
+<!-- REQUEST ACCESS MODAL -->
+<div id="request-modal" class="modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeRequestModal()" aria-label="Close">&times;</button>
+
+    <div class="modal-header">
+      <div class="modal-eyebrow">
+        <span class="modal-dot"></span>
+        / invite-only
+      </div>
+      <h2 class="modal-title" id="modal-title">Request <em>access.</em></h2>
+      <p class="modal-subtitle">Tell us a bit about what you ship. If it's a fit, we'll reach out to scope a pilot.</p>
+    </div>
+
+    <form id="request-form" class="modal-body" novalidate>
+      <div class="modal-row">
+        <div class="field-group">
+          <label class="field-label" for="ra-name">Name <span class="field-req">*</span></label>
+          <input id="ra-name" name="firstname" type="text" class="field-input" placeholder="Jane Doe" required>
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="ra-email">Work email <span class="field-req">*</span></label>
+          <input id="ra-email" name="email" type="email" class="field-input" placeholder="jane@company.com" required>
+        </div>
+      </div>
+
+      <div class="modal-row">
+        <div class="field-group">
+          <label class="field-label" for="ra-company">Company <span class="field-req">*</span></label>
+          <input id="ra-company" name="company" type="text" class="field-input" placeholder="Company name" required>
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="ra-role">Your role <span class="field-req">*</span></label>
+          <select id="ra-role" name="jobtitle" class="field-input field-select" required>
+            <option value="" disabled selected>Choose&hellip;</option>
+            <option>CTO</option>
+            <option>CISO</option>
+            <option>Head of Engineering</option>
+            <option>Head of Security</option>
+            <option>Security Engineer</option>
+            <option>Software Engineer</option>
+            <option>Founder / CEO</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="ra-target">What do you want pentested? <span class="field-req">*</span></label>
+        <select id="ra-target" name="pentest_target" class="field-input field-select" required>
+          <option value="" disabled selected>Choose&hellip;</option>
+          <option>Web Application</option>
+          <option>Mobile App (iOS / Android)</option>
+          <option>API</option>
+          <option>Smart Contract</option>
+          <option>Cloud Infrastructure</option>
+          <option>Multiple / Not sure yet</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="ra-notes">Anything else we should know?</label>
+        <textarea id="ra-notes" name="message" class="field-input field-textarea" placeholder="Stack, release cadence, compliance needs, timeline&hellip;"></textarea>
+      </div>
+
+      <button type="submit" class="modal-submit" id="modal-submit-btn">
+        <span class="modal-submit-text">Send request &rarr;</span>
+        <span class="modal-submit-loading" hidden>Sending&hellip;</span>
+      </button>
+
+      <div id="modal-success" class="modal-success" hidden>
+        &check; We'll be in touch soon.
+      </div>
+      <div id="modal-error" class="modal-error" hidden>
+        Something went wrong. Email us at <a href="mailto:info@credshields.com">info@credshields.com</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  // ── CONFIG: fill in your HubSpot portal ID and form GUID ──
+  const HS_PORTAL_ID = '24889894';  // e.g. '12345678'
+  const HS_FORM_GUID = '00ec3deb-d112-4a0d-8a30-73dc6c11b4f5';  // e.g. 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
+
+  function openRequestModal() {
+    const modal = document.getElementById('request-modal');
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => document.getElementById('ra-name').focus(), 50);
+  }
+
+  function closeRequestModal() {
+    const modal = document.getElementById('request-modal');
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('request-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeRequestModal();
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeRequestModal();
+  });
+
+  document.getElementById('request-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const form = this;
+    const btn  = document.getElementById('modal-submit-btn');
+    const successEl = document.getElementById('modal-success');
+    const errorEl   = document.getElementById('modal-error');
+
+    successEl.hidden = true;
+    errorEl.hidden   = true;
+    form.querySelectorAll('.field-error').forEach(el => el.classList.remove('field-error'));
+
+    const required = ['ra-name', 'ra-email', 'ra-company', 'ra-role', 'ra-target'];
+    let valid = true;
+    required.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el.value.trim()) { el.classList.add('field-error'); valid = false; }
+    });
+    if (!valid) return;
+
+    btn.disabled = true;
+    btn.querySelector('.modal-submit-text').hidden = true;
+    btn.querySelector('.modal-submit-loading').hidden = false;
+
+    const fields = [
+      { name: 'firstname',      value: form.firstname.value.trim() },
+      { name: 'email',          value: form.email.value.trim() },
+      { name: 'company',        value: form.company.value.trim() },
+      { name: 'jobtitle',       value: form.jobtitle.value },
+      { name: 'pentest_target', value: form.pentest_target.value },
+      { name: 'message',        value: form.message.value.trim() },
+    ];
+
+    try {
+      const res = await fetch(
+        `https://api.hsforms.com/submissions/v3/integration/submit/${HS_PORTAL_ID}/${HS_FORM_GUID}`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            fields,
+            context: { pageUri: window.location.href, pageName: document.title },
+          }),
+        }
+      );
+      if (res.ok) {
+        form.reset();
+        btn.hidden = true;
+        successEl.hidden = false;
+      } else {
+        errorEl.hidden = false;
+      }
+    } catch {
+      errorEl.hidden = false;
+    } finally {
+      btn.disabled = false;
+      btn.querySelector('.modal-submit-text').hidden = false;
+      btn.querySelector('.modal-submit-loading').hidden = true;
+    }
+  });
+</script>
+
 <footer>
   <div class="container">
     <div class="foot-top">

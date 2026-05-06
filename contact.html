@@ -2647,6 +2647,18 @@
 }
 
 /* Submit button */
+.form-input.field-error,
+.form-select.field-error {
+  border-color: #c0392b;
+}
+.modal-error {
+  text-align: center;
+  color: #c0392b;
+  font-size: 13px;
+  padding: 6px 0;
+}
+.modal-error a { color: inherit; text-decoration: underline; }
+
 .form-submit {
   width: 100%;
   padding: 15px;
@@ -3900,7 +3912,7 @@
         <div class="form-row split">
           <div>
             <label class="form-label" for="af-name">Name <span class="req">*</span></label>
-            <input class="form-input" type="text" id="af-name" name="name" required autocomplete="name" placeholder="Jane Doe" />
+            <input class="form-input" type="text" id="af-name" name="firstname" required autocomplete="name" placeholder="Jane Doe" />
           </div>
           <div>
             <label class="form-label" for="af-email">Work email <span class="req">*</span></label>
@@ -3915,40 +3927,46 @@
           </div>
           <div>
             <label class="form-label" for="af-role">Your role <span class="req">*</span></label>
-            <select class="form-select" id="af-role" name="role" required>
-              <option value="" disabled selected>Choose…</option>
-              <option>CISO / Head of Security</option>
-              <option>Security Engineer</option>
-              <option>Engineering Lead</option>
+            <select class="form-select" id="af-role" name="jobtitle" required>
+              <option value="" disabled selected>Choose&hellip;</option>
               <option>CTO</option>
-              <option>Founder</option>
+              <option>CISO</option>
+              <option>Head of Engineering</option>
+              <option>Head of Security</option>
+              <option>Security Engineer</option>
+              <option>Software Engineer</option>
+              <option>Founder / CEO</option>
               <option>Other</option>
             </select>
           </div>
         </div>
 
         <div class="form-row">
-          <label class="form-label" for="af-scope">What do you want pentested? <span class="req">*</span></label>
-          <select class="form-select" id="af-scope" name="scope" required>
-            <option value="" disabled selected>Choose…</option>
-            <option>Cloud config (AWS / GCP / Azure)</option>
-            <option>Mobile app (iOS / Android)</option>
-            <option>APIs</option>
-            <option>AI-powered features</option>
-            <option>Multiple surfaces</option>
-            <option>Not sure yet</option>
+          <label class="form-label" for="af-target">What do you want pentested? <span class="req">*</span></label>
+          <select class="form-select" id="af-target" name="pentest_target" required>
+            <option value="" disabled selected>Choose&hellip;</option>
+            <option>Web Application</option>
+            <option>Mobile App (iOS / Android)</option>
+            <option>API</option>
+            <option>Smart Contract</option>
+            <option>Cloud Infrastructure</option>
+            <option>Multiple / Not sure yet</option>
           </select>
         </div>
 
         <div class="form-row">
           <label class="form-label" for="af-notes">Anything else we should know?</label>
-          <textarea class="form-textarea" id="af-notes" name="notes" placeholder="Stack, release cadence, compliance needs, timeline."></textarea>
+          <textarea class="form-textarea" id="af-notes" name="message" placeholder="Stack, release cadence, compliance needs, timeline&hellip;"></textarea>
         </div>
 
-        <button type="submit" class="form-submit">
-          Send request
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        <button type="submit" class="form-submit" id="accessSubmitBtn">
+          <span class="modal-submit-text">Send request &rarr;</span>
+          <span class="modal-submit-loading" hidden>Sending&hellip;</span>
         </button>
+
+        <div id="accessError" class="modal-error" hidden>
+          Something went wrong. Email us at <a href="mailto:info@credshields.com">info@credshields.com</a>
+        </div>
       </div>
     </form>
 
@@ -4039,18 +4057,19 @@
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  /* ========================================================
-     Request Access modal
-     Wires every link or button whose href/data attribute
-     targets /request-access or #cta to open the modal instead.
-     Submission is currently stubbed; see TODO at bottom.
-     ======================================================== */
+  const HS_PORTAL_ID = '24889894';
+  const HS_FORM_GUID = '00ec3deb-d112-4a0d-8a30-73dc6c11b4f5';
+
   (function setupAccessModal() {
     const modal = document.getElementById('accessModal');
     if (!modal) return;
     const form = document.getElementById('accessForm');
     const success = document.getElementById('accessSuccess');
+    const errorEl = document.getElementById('accessError');
     const firstField = document.getElementById('af-name');
+    const btn = document.getElementById('accessSubmitBtn');
+    const submitText = btn ? btn.querySelector('.modal-submit-text') : null;
+    const submitLoading = btn ? btn.querySelector('.modal-submit-loading') : null;
     let lastFocused = null;
 
     function openModal(triggerEl) {
@@ -4058,9 +4077,10 @@
       modal.classList.add('open');
       modal.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
-      // reset to form view, clear prior success state
       form.classList.remove('hide');
       success.classList.remove('show');
+      if (errorEl) errorEl.hidden = true;
+      if (btn) btn.hidden = false;
       setTimeout(() => firstField && firstField.focus(), 50);
     }
 
@@ -4073,21 +4093,21 @@
       }
     }
 
-    // Hook every "Request access" trigger
+    window.openRequestModal = openModal;
+    window.closeRequestModal = closeModal;
+
     const selectors = [
       'a[href="/request-access"]',
       'a[href="#cta"]',
       'a[href="index.html#cta"]'
     ];
     document.querySelectorAll(selectors.join(',')).forEach(el => {
-      // Skip the in-page final CTA section (so scroll-to-section still works from the footer nav if desired)
       el.addEventListener('click', (e) => {
         e.preventDefault();
         openModal(el);
       });
     });
 
-    // Close handlers
     modal.querySelectorAll('[data-close-modal]').forEach(el => {
       el.addEventListener('click', closeModal);
     });
@@ -4098,24 +4118,59 @@
       if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
     });
 
-    // Form submit
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const data = Object.fromEntries(new FormData(form).entries());
+      if (errorEl) errorEl.hidden = true;
+      form.querySelectorAll('.field-error').forEach(el => el.classList.remove('field-error'));
 
-      /* ====================================================
-         TODO: wire up your actual form handler here.
-         Options:
-         (1) Formspree:      fetch('https://formspree.io/f/YOUR_ID', ...)
-         (2) Resend email:   fetch('/api/request-access', ...)
-         (3) HubSpot forms:  their inline embed
-         (4) Google Form:    proxy via Apps Script
-         For now this logs and shows the success state.
-         ==================================================== */
-      console.log('[access-request]', data);
+      const required = ['af-name', 'af-email', 'af-company', 'af-role', 'af-target'];
+      let valid = true;
+      required.forEach(id => {
+        const el = document.getElementById(id);
+        if (!el.value.trim()) { el.classList.add('field-error'); valid = false; }
+      });
+      if (!valid) return;
 
-      form.classList.add('hide');
-      success.classList.add('show');
+      if (btn) btn.disabled = true;
+      if (submitText) submitText.hidden = true;
+      if (submitLoading) submitLoading.hidden = false;
+
+      const fields = [
+        { name: 'firstname',      value: form.firstname.value.trim() },
+        { name: 'email',          value: form.email.value.trim() },
+        { name: 'company',        value: form.company.value.trim() },
+        { name: 'jobtitle',       value: form.jobtitle.value },
+        { name: 'pentest_target', value: form.pentest_target.value },
+        { name: 'message',        value: form.message.value.trim() },
+      ];
+
+      try {
+        const res = await fetch(
+          'https://api.hsforms.com/submissions/v3/integration/submit/' + HS_PORTAL_ID + '/' + HS_FORM_GUID,
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              fields,
+              context: { pageUri: window.location.href, pageName: document.title },
+            }),
+          }
+        );
+        if (res.ok) {
+          form.reset();
+          if (btn) btn.hidden = true;
+          form.classList.add('hide');
+          success.classList.add('show');
+        } else {
+          if (errorEl) errorEl.hidden = false;
+        }
+      } catch {
+        if (errorEl) errorEl.hidden = false;
+      } finally {
+        if (btn) btn.disabled = false;
+        if (submitText) submitText.hidden = false;
+        if (submitLoading) submitLoading.hidden = true;
+      }
     });
   })();
 </script>
