@@ -6,15 +6,15 @@
 <title>The AI Pentesting Platform · CredShields One</title>
 <meta name="description" content="Full tour of CredShields One: architecture, 5-stage AI + human pentest pipeline, product screens, what we test for, safe-in-production design, integrations, and FAQ." />
 <meta name="robots" content="index, follow, max-image-preview:large" />
-<link rel="canonical" href="https://credshields.com/platform" />
+<link rel="canonical" href="https://one.credshields.com/platform" />
 
 <!-- Open Graph -->
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="CredShields One" />
-<meta property="og:url" content="https://credshields.com/platform" />
+<meta property="og:url" content="https://one.credshields.com/platform" />
 <meta property="og:title" content="The AI Penetration Testing Platform · CredShields One" />
 <meta property="og:description" content="Architecture, pipeline, product screens, and FAQ for CredShields One. AI pentesting with senior human pentesters in the loop." />
-<meta property="og:image" content="https://credshields.com/og-platform.png" />
+<meta property="og:image" content="https://one.credshields.com/images/cs_one_black_logo.svg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 
@@ -22,7 +22,7 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="The AI Penetration Testing Platform · CredShields One" />
 <meta name="twitter:description" content="Architecture, pipeline, and FAQ for CredShields One. AI pentesting with senior humans in the loop." />
-<meta name="twitter:image" content="https://credshields.com/og-platform.png" />
+<meta name="twitter:image" content="https://one.credshields.com/images/cs_one_black_logo.svg" />
 
 <!-- Theme + icons -->
 <meta name="theme-color" content="#F4F8F4" />
@@ -37,8 +37,8 @@
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://credshields.com/" },
-        { "@type": "ListItem", "position": 2, "name": "Platform", "item": "https://credshields.com/platform" }
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://one.credshields.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Platform", "item": "https://one.credshields.com/platform" }
       ]
     },
     {
@@ -139,12 +139,12 @@
       <li><a href="index.html#different">Why us</a></li>
       <li><a href="index.html#what-we-test">What we test</a></li>
       <li><a href="index.html#team">Team</a></li>
-      <li class="mobile-only-li"><a href="" onclick="openRequestModal(); return false;" class="nav-cta-mobile">
+      <li class="mobile-only-li"><a href="mailto:hello@credshields.com" data-request-access class="nav-cta-mobile">
         Request access
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a></li>
     </ul>
-    <a href="" onclick="openRequestModal(); return false;" class="nav-cta">
+    <a href="mailto:hello@credshields.com" data-request-access class="nav-cta">
       Request access
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
     </a>
@@ -655,7 +655,7 @@
       <span class="eyebrow" style="justify-content:center">/ invite-only while we scale</span>
       <h2>Seen enough. <em>Request access.</em></h2>
       <p>We're onboarding design partners on cloud and mobile apps. Our AI runs the pentest. Our senior operators work the case alongside it. You'll have validated findings, not months later.</p>
-      <a href="" onclick="openRequestModal(); return false;" class="btn-primary">
+      <a href="mailto:hello@credshields.com" data-request-access class="btn-primary">
         Request access
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
@@ -700,7 +700,7 @@
           <li><a href="mobile-app-pentest.html">Mobile app pentest</a></li>
           <li><a href="api-pentest.html">API pentest</a></li>
           <li><a href="llm-pentest.html">LLM pentest</a></li>
-          <li><a href="" onclick="openRequestModal(); return false;">Request access</a></li>
+          <li><a href="mailto:hello@credshields.com" data-request-access>Request access</a></li>
         </ul>
       </div>
       <div class="foot-col">
@@ -852,6 +852,14 @@
 
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') closeRequestModal();
+  });
+
+  document.querySelectorAll('a[data-request-access]').forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      e.preventDefault();
+      openRequestModal();
+    });
   });
 
   document.getElementById('request-form').addEventListener('submit', async function(e) {

@@ -5,6 +5,8 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="theme-color" content="#F4F8F4" />
+<link rel="canonical" href="https://one.credshields.com/terms" />
+<meta property="og:url" content="https://one.credshields.com/terms" />
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M16 3 L27 8 V16 C27 22 22 27 16 29 C10 27 5 22 5 16 V8 Z' stroke='%232E7D0E' stroke-width='1.8' fill='%23A8FF45'/><path d='M11 16 L14.5 19.5 L21 12' stroke='%230A1A0C' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -156,12 +158,12 @@
       <li><a href="index.html#different">Why us</a></li>
       <li><a href="index.html#what-we-test">What we test</a></li>
       <li><a href="index.html#team">Team</a></li>
-      <li class="mobile-only-li"><a href="" onclick="openRequestModal(); return false;" class="nav-cta-mobile">
+      <li class="mobile-only-li"><a href="mailto:hello@credshields.com" data-request-access class="nav-cta-mobile">
         Request access
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a></li>
     </ul>
-    <a href="" onclick="openRequestModal(); return false;" class="nav-cta">
+    <a href="mailto:hello@credshields.com" data-request-access class="nav-cta">
       Request access
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
     </a>
@@ -486,8 +488,8 @@
 
 <script>
   // ── CONFIG: fill in your HubSpot portal ID and form GUID ──
-  const HS_PORTAL_ID = '24889894';  // e.g. '12345678'
-  const HS_FORM_GUID = '00ec3deb-d112-4a0d-8a30-73dc6c11b4f5';  // e.g. 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
+  const HS_PORTAL_ID = '24889894';
+  const HS_FORM_GUID = '00ec3deb-d112-4a0d-8a30-73dc6c11b4f5';
 
   function openRequestModal() {
     const modal = document.getElementById('request-modal');
@@ -510,6 +512,14 @@
 
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') closeRequestModal();
+  });
+
+  document.querySelectorAll('a[data-request-access]').forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      e.preventDefault();
+      openRequestModal();
+    });
   });
 
   document.getElementById('request-form').addEventListener('submit', async function(e) {
@@ -607,7 +617,7 @@
           <li><a href="mobile-app-pentest.html">Mobile app pentest</a></li>
           <li><a href="api-pentest.html">API pentest</a></li>
           <li><a href="llm-pentest.html">LLM pentest</a></li>
-          <li><a href="" onclick="openRequestModal(); return false;">Request access</a></li>
+          <li><a href="mailto:hello@credshields.com" data-request-access>Request access</a></li>
         </ul>
       </div>
       <div class="foot-col">
