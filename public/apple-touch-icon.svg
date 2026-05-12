@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-labelledby="title">
+  <title id="title">CredShields One app icon</title>
+  <rect width="180" height="180" rx="38" fill="#f4f8f4"/>
+  <path d="M90 22 145 47v42c0 33-22 58-55 72-33-14-55-39-55-72V47l55-25Z" fill="#a8ff45" stroke="#2e7d0e" stroke-width="9" stroke-linejoin="round"/>
+  <path d="m62 92 18 18 40-45" fill="none" stroke="#0a1a0c" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

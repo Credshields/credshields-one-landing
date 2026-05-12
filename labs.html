@@ -23,6 +23,8 @@
 <meta name="twitter:image" content="https://one.credshields.com/og-image.svg" />
 
 <meta name="theme-color" content="#F4F8F4" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.svg" />
+<link rel="manifest" href="/site.webmanifest" />
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M16 3 L27 8 V16 C27 22 22 27 16 29 C10 27 5 22 5 16 V8 Z' stroke='%232E7D0E' stroke-width='1.8' fill='%23A8FF45'/><path d='M11 16 L14.5 19.5 L21 12' stroke='%230A1A0C' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>" />
 
 <script type="application/ld+json">
@@ -102,6 +104,28 @@
   ::selection { background: var(--lime); color: var(--text); }
   a { color: inherit; text-decoration: none; }
   button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+  .skip-link {
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 9999;
+    transform: translateY(-160%);
+    padding: 10px 14px;
+    border: 1px solid var(--border-strong);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--text);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    font-weight: 600;
+    box-shadow: 0 10px 24px rgba(10, 26, 12, 0.14);
+    transition: transform 0.18s var(--ease);
+  }
+  .skip-link:focus {
+    transform: translateY(0);
+    outline: 2px solid var(--green);
+    outline-offset: 3px;
+  }
 
   /* type */
   .display {
@@ -3778,6 +3802,7 @@
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
 <nav class="site">
   <div class="container inner">
     <a href="index.html" class="brand">
@@ -3815,7 +3840,7 @@
     </button>
   </div>
 </nav>
-<main>
+<main id="main-content">
 <header class="content-hero">
   <div class="container">
     <span class="eyebrow">/ labs</span>
@@ -3832,41 +3857,41 @@
 
       <div class="labs-grid">
 
-        <a href="#" class="lab-card">
+        <article class="lab-card">
           <div class="lab-meta">
             <span class="lab-tag">CVE disclosure</span>
-            <span>May 2026</span>
+            <span>Pending disclosure</span>
           </div>
           <h3>JWT verifier that accepted alg:none in 2026</h3>
           <p>How a custom JWT implementation drifted from library defaults over three years and why the fix was one line but the finding was two hours.</p>
-        </a>
+        </article>
 
-        <a href="#" class="lab-card">
+        <article class="lab-card">
           <div class="lab-meta">
             <span class="lab-tag">Attack class</span>
-            <span>May 2026</span>
+            <span>In review</span>
           </div>
           <h3>GraphQL alias abuse as a rate-limit bypass</h3>
           <p>A technique that consistently defeats per-request rate limits on login mutations. Includes a taxonomy of where it hits hardest and how to fix it properly.</p>
-        </a>
+        </article>
 
-        <a href="#" class="lab-card">
+        <article class="lab-card">
           <div class="lab-meta">
             <span class="lab-tag">Writeup</span>
-            <span>May 2026</span>
+            <span>In review</span>
           </div>
           <h3>Indirect prompt injection via calendar invites</h3>
           <p>An AI scheduling assistant was trivially jailbroken by adding instructions in the notes field of an incoming meeting invite. What the attack looked like, what broke, and how to mitigate.</p>
-        </a>
+        </article>
 
-        <a href="#" class="lab-card">
+        <article class="lab-card">
           <div class="lab-meta">
             <span class="lab-tag">Research</span>
-            <span>May 2026</span>
+            <span>Dataset anonymization</span>
           </div>
           <h3>Tenant isolation gaps in 5 multi-tenant SaaS platforms</h3>
           <p>Patterns of cross-tenant flaws we kept finding across engagements. Coded to an anonymized dataset, focused on what was shared vs what should have been.</p>
-        </a>
+        </article>
 
       </div>
 
