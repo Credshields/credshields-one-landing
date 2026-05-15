@@ -99,7 +99,18 @@
           <a href="llm-pentest.html" role="menuitem">LLM pentest</a>
         </div>
       </li>
-      <li><a href="#different">Why us</a></li>
+      <li class="nav-dropdown">
+        <a href="#" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+          Why us
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </a>
+        <div class="nav-dropdown-menu" role="menu">
+          <a href="#different" role="menuitem">Why us</a>
+          <a href="compare.html" role="menuitem">Compare</a>
+          <a href="methodology.html" role="menuitem">Methodology</a>
+          <a href="case-studies.html" role="menuitem">Case studies</a>
+        </div>
+      </li>
       <li><a href="#what-we-test">What we test</a></li>
       <li><a href="#team">Team</a></li>
       <li class="mobile-only-li"><button type="button" data-request-access class="nav-cta-mobile">
@@ -928,7 +939,8 @@
           <li><a href="platform.html#product">Product screens</a></li>
           <li><a href="platform.html#safety">Safety</a></li>
           <li><a href="platform.html#integrations">Integrations</a></li>
-          <li><a href="platform.html#faq">FAQ</a></li>
+          <li><a href="trust.html">Trust &amp; compliance</a></li>
+          <li><a href="faq.html">FAQ</a></li>
         </ul>
       </div>
       <div class="foot-col">
@@ -1205,16 +1217,16 @@
       btn.setAttribute('aria-expanded', 'false');
     });
   });
-  // services dropdown toggle on mobile (tap to expand)
-  var trig = nav.querySelector('.nav-dropdown-trigger');
-  if (trig) {
+  // dropdown toggles on mobile (tap to expand)
+  nav.querySelectorAll('.nav-dropdown-trigger').forEach(function (trig) {
     trig.addEventListener('click', function (e) {
       if (window.matchMedia('(max-width: 960px)').matches) {
         e.preventDefault();
-        trig.parentElement.classList.toggle('is-expanded');
+        var expanded = trig.parentElement.classList.toggle('is-expanded');
+        trig.setAttribute('aria-expanded', expanded ? 'true' : 'false');
       }
     });
-  }
+  });
 })();
 </script>
 
