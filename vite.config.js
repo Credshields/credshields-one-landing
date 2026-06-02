@@ -11,8 +11,6 @@ const pages = [
   'security',
   'privacy',
   'terms',
-  'docs',
-  'labs',
   'buyers-guide',
   'case-studies',
   'compare',

@@ -1,2 +1,13 @@
 /request-access /contact 302
 /cdn-cgi/l/email-protection /contact 302
+/docs / 302
+/docs.html / 302
+/labs / 302
+/labs.html / 302
+/services/api /api-pentest 301
+/services/api-pentest /api-pentest 301
+/services/ai-app /llm-pentest 301
+/services/llm-pentest /llm-pentest 301
+/services/mobile-app /mobile-app-pentest 301
+/services/mobile-app-pentest /mobile-app-pentest 301
+/services/cloud-config-pentest /cloud-config-pentest 301

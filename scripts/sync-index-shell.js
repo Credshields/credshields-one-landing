@@ -25,8 +25,8 @@ function extractBlock(html, pattern, label) {
 
 function adaptIndexShellForSubpage(html) {
   return html
-    .replaceAll('href="#" class="brand"', 'href="index.html" class="brand"')
-    .replace(/href="#([^"]+)"/g, 'href="index.html#$1"');
+    .replaceAll('href="#" class="brand"', 'href="/" class="brand"')
+    .replace(/href="#([^"]+)"/g, 'href="/#$1"');
 }
 
 const nav = adaptIndexShellForSubpage(

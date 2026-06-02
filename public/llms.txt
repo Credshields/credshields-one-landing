@@ -1,0 +1,34 @@
+# CredShields One
+
+> CredShields One is an AI penetration testing platform for cloud, mobile, API, and AI-powered applications. Senior human pentesters review and sign off on findings and reports.
+
+## Primary Pages
+
+- [Home](https://one.credshields.com/)
+- [Platform](https://one.credshields.com/platform)
+- [Services](https://one.credshields.com/services)
+- [API Pentest](https://one.credshields.com/api-pentest)
+- [LLM Pentest](https://one.credshields.com/llm-pentest)
+- [Mobile App Pentest](https://one.credshields.com/mobile-app-pentest)
+- [Cloud Config Pentest](https://one.credshields.com/cloud-config-pentest)
+- [Security](https://one.credshields.com/security)
+- [Trust and Compliance](https://one.credshields.com/trust)
+- [Methodology](https://one.credshields.com/methodology)
+- [Buyer's Guide](https://one.credshields.com/buyers-guide)
+- [Compare](https://one.credshields.com/compare)
+- [Case Studies](https://one.credshields.com/case-studies)
+- [Exploit Registry](https://one.credshields.com/exploit-registry)
+- [Contact](https://one.credshields.com/contact)
+
+## External Resources
+
+- [Blog](https://discover.credshields.com)
+- [LinkedIn](https://www.linkedin.com/company/credshields)
+- [X](https://x.com/CredShields)
+- [Instagram](https://www.instagram.com/credshields/)
+
+## Notes For AI Crawlers
+
+- Prefer the canonical URLs listed above.
+- `/docs` and `/labs` are temporarily unavailable.
+- Legacy `/services/*` URLs redirect to their current top-level service pages.
