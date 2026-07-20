@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "name": "How much does it cost?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Engagements are scoped per surface (cloud config, web/API, mobile, LLM) and per environment size. Most active design-partner pilots land between the cost of one traditional pentest and one mid-tier scanner subscription, billed annually with unlimited retests included. There's no per-finding charge and no per-retest fee. We share a written quote after the scoping call."
+        "text": "Engagements are scoped per surface (cloud config, web/API, mobile, LLM) and per environment size. Most active design-partner pilots land between the cost of one traditional pentest and one mid-tier scanner subscription, billed annually with unlimited retests included. No per-finding charge, no per-retest fee."
       }
     },
     {
@@ -54,7 +54,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "name": "How are you priced compared to a traditional pentest?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A traditional pentest is a one-shot invoice for a fixed window. We're a continuous engagement at a fraction of that cost on an annualized basis, with retests, monitoring, and new-release coverage included. The shorthand: roughly the cost of one traditional pentest, for a year of continuous coverage. Your mileage will depend on scope."
+        "text": "A traditional pentest is a one-shot invoice for a fixed window. We're a continuous engagement at a fraction of that cost on an annualized basis, with retests, monitoring, and new-release coverage included."
       }
     },
     {
@@ -62,7 +62,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "name": "Do you have a per-test option?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, for cloud config and one-off pre-launch engagements. The continuous model is the default because that's where the value compounds, but we'll run a single point-in-time engagement when a customer needs one for a specific audit or release."
+        "text": "Yes, for cloud config and one-off pre-launch engagements. The continuous model is the default because that's where the value compounds, but we'll run a single point-in-time engagement when a customer needs one."
       }
     },
     {
@@ -78,7 +78,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "name": "What does the engagement actually look like?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Scoping call (30 min), read-only access provisioning, kickoff. The AI starts within hours. First validated findings inside a week for most engagements. Full report inside two weeks. Then continuous coverage, with monthly reviews and report regeneration on demand. Retests run minutes after you push a fix."
+        "text": "Scoping call (30 min), read-only access provisioning, kickoff. The AI starts within hours. First validated findings inside a week for most engagements. Full report inside two weeks. Then continuous coverage."
       }
     },
     {
@@ -86,7 +86,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "name": "What access do you need?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "For cloud config: a read-only IAM role in your AWS, GCP, or Azure account. No keys, no console access, no write permissions. For web and API: test credentials at the user roles you want covered. For mobile: a copy of the binary (signed test build is fine) and test credentials. For LLM features: API access to the application surface, no model weights needed."
+        "text": "For cloud config: a read-only IAM role. For web and API: test credentials at the user roles you want covered. For mobile: a copy of the binary and test credentials. For LLM features: API access to the application surface, no model weights needed."
       }
     },
     {
@@ -94,7 +94,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "name": "Do you test in production or in staging?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Either, you choose. Default is staging for the initial deep dive, production for continuous monitoring (with explicit go-ahead and guardrails). Our exploits are non-destructive by design: we prove impact, we don't cause it. No destructive actions, no data exfiltration, no service disruption."
+        "text": "Either, you choose. Default is staging for the initial deep dive, production for continuous monitoring (with explicit go-ahead and guardrails). Our exploits are non-destructive by design."
       }
     },
     {
@@ -102,7 +102,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "name": "What's in scope versus out of scope?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "You decide. Scope is agreed in writing before kickoff, and changes need your sign-off. Common in-scope items: your hosted app, your APIs, your mobile binaries, your cloud accounts. Common out-of-scope items: third-party services you don't own, social engineering, physical access, denial-of-service testing. We will not touch anything outside the agreed scope."
+        "text": "You decide. Scope is agreed in writing before kickoff, and changes need your sign-off. Common out-of-scope items: third-party services you don't own, social engineering, physical access, denial-of-service testing."
       }
     },
     {
@@ -110,7 +110,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "name": "Can the AI go off-script or escalate without permission?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. The AI runs under graduated autonomy levels defined per engagement, with hard scope boundaries enforced before any action. Anything that would require leaving scope, touching production with side effects, or chaining into systems we don't have explicit permission for, stops and routes to a human. The OWASP APTS standard calls this \"scope enforcement\", we treat it as table stakes."
+        "text": "No. The AI runs under graduated autonomy levels defined per engagement, with hard scope boundaries enforced before any action. Anything requiring leaving scope stops and routes to a human."
       }
     },
     {
@@ -118,7 +118,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "name": "How do you handle our data?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "We hold the minimum data needed for the engagement, encrypted in transit and at rest. Findings and reports live in our platform; raw scan data is purged on a rolling 90-day window unless you ask us to keep it longer for audit purposes. Full data-handling policy on the trust page."
+        "text": "We hold the minimum data needed for the engagement, encrypted in transit and at rest. Raw scan data is purged on a rolling 90-day window unless you ask us to keep it longer for audit purposes."
       }
     },
     {
@@ -126,7 +126,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "name": "What does the report look like?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Executive summary, full finding list ranked by severity, per-finding reproduction steps, blast radius assessment, remediation guidance, and compliance mapping (SOC 2, ISO 27001, GDPR, PCI-DSS, HIPAA as applicable). PDF and JSON formats. Designed to pass an auditor's review without rework. Sample available on request, and every customer can regenerate the report any time the scope changes."
+        "text": "Executive summary, full finding list ranked by severity, per-finding reproduction steps, blast radius, remediation guidance, and compliance mapping. PDF and JSON formats. Designed to pass an auditor's review without rework."
       }
     },
     {
@@ -134,7 +134,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "name": "Will it satisfy a SOC 2 or ISO 27001 auditor?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Reports are mapped to the specific control families auditors cite (SOC 2 CC6.1 / CC7.1, ISO 27001 A.12.6.1 / A.14.2.8, etc.), with a senior pentester named on every report, which is what auditors actually want to see. Customers have used our reports for SOC 2 Type II audits, ISO 27001 surveillance audits, and PCI-DSS Requirement 11.4 evidence."
+        "text": "Yes. Reports are mapped to the specific control families auditors cite, with a senior pentester named on every report. Customers have used our reports for SOC 2 Type II audits, ISO 27001 surveillance audits, and PCI-DSS Requirement 11.4 evidence."
       }
     },
     {
@@ -142,7 +142,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "name": "What's the typical finding mix?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Highly variable by surface and maturity. Indicative for a first engagement on a mid-maturity SaaS: 2 to 8 Critical/High validated findings, 10 to 30 Medium, plus a long tail of Low/Info. Most teams ship fixes for Critical/High inside two weeks. Retests confirm in minutes."
+        "text": "Indicative for a first engagement on a mid-maturity SaaS: 2 to 8 Critical/High validated findings, 10 to 30 Medium, plus a long tail of Low/Info. Most teams ship fixes for Critical/High inside two weeks."
       }
     },
     {
@@ -150,7 +150,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "name": "Do you only find OWASP Top 10 stuff?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "OWASP is the floor, not the ceiling. The AI runs OWASP and CWE coverage as baseline. The human side of the engagement is where the business-logic, multi-step, and tradecraft-driven findings come from. The ones a scanner could never reason about. Methodology page has the full vulnerability-class list."
+        "text": "OWASP is the floor, not the ceiling. The AI runs OWASP and CWE coverage as baseline. The human side is where the business-logic, multi-step, and tradecraft-driven findings come from."
       }
     },
     {
@@ -158,7 +158,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "name": "How much of this is actually AI and how much is the human?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The AI does almost all of the discovery, the first-pass probing, the retest execution, and the report drafting. A senior pentester reviews every Critical and High finding, runs the business-logic and multi-step chain hunts, signs the report, and is named on it. The handoff between AI and human isn't soft, it's a documented decision tree, on the methodology page."
+        "text": "The AI does almost all of the discovery, first-pass probing, retest execution, and report drafting. A senior pentester reviews every Critical and High finding, runs the business-logic hunts, signs the report, and is named on it."
       }
     },
     {
@@ -166,7 +166,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "name": "Are you a wrapper around GPT or Claude?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. We use frontier LLMs where they're the right tool, but the offensive-security reasoning is in our own orchestration layer, exploit corpus, and replay infrastructure. The thing that makes a finding land is not which LLM is in the loop, it's two decades of offensive tradecraft, encoded in how the system is set up and supervised."
+        "text": "No. We use frontier LLMs where they're the right tool, but the offensive-security reasoning is in our own orchestration layer, exploit corpus, and replay infrastructure."
       }
     },
     {
@@ -174,7 +174,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "name": "What if the AI hallucinates a finding?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Every High and Critical finding is reproduced end-to-end before it ships. If the reviewer can't reproduce it, it doesn't enter the report. We've turned away more AI-flagged candidates than we've shipped. That's a feature, not a bug."
+        "text": "Every High and Critical finding is reproduced end-to-end before it ships. If the reviewer can't reproduce it, it doesn't enter the report. We've turned away more AI-flagged candidates than we've shipped."
       }
     },
     {
@@ -182,7 +182,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "name": "How do you compare to fully-autonomous AI pentest platforms?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Several platforms (RunSybil, XBOW, NodeZero) run without humans in the loop. They scale better than us on pure coverage. We scale better than them on business-logic findings, on findings that need judgment about severity, and on reports that auditors don't push back on. Comparison page goes deeper."
+        "text": "Several platforms run without humans in the loop. They scale better than us on pure coverage. We scale better on business-logic findings, on severity judgment, and on reports auditors don't push back on."
       }
     },
     {
@@ -190,7 +190,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "name": "How do you compare to traditional manual pentest firms?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "We're slower than them on the very first day of an engagement, because the AI does discovery first. We're 10x faster than them across the rest of the engagement, and across every release after. We deliver continuous coverage at a fraction of the per-engagement cost, with retests that run in minutes instead of weeks."
+        "text": "We're slower on the very first day, because the AI does discovery first. We're 10x faster across the rest of the engagement, and across every release after, with retests that run in minutes instead of weeks."
       }
     },
     {
@@ -198,7 +198,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "name": "Does it integrate with our CI/CD?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, on the roadmap for self-serve and available today as a managed integration. We can run a retest on every merge or every deploy, fail builds on Critical findings, and post results to Slack, Linear, Jira, or GitHub. API endpoint details are shared during onboarding."
+        "text": "Yes, on the roadmap for self-serve and available today as a managed integration. We can run a retest on every merge or deploy, fail builds on Critical findings, and post to Slack, Linear, Jira, or GitHub."
       }
     },
     {
@@ -206,7 +206,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "name": "Where do findings land?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "In our platform first, then mirrored anywhere you want: Jira, Linear, GitHub Issues, Slack, or via webhook to wherever you triage. Each finding ships with the reproduction steps, the reviewer's annotation, and the remediation guidance, in your tracker's native format."
+        "text": "In our platform first, then mirrored anywhere you want: Jira, Linear, GitHub Issues, Slack, or via webhook. Each finding ships with reproduction steps, the reviewer's annotation, and remediation guidance."
       }
     },
     {
@@ -214,7 +214,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "name": "Can we white-label the report for our customers?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "For enterprise customers, yes. The report can be co-branded or fully white-labeled with your name on it, with our senior reviewer named as the attesting party. Often used by SaaS vendors who pass the report through to their own enterprise customers for vendor-risk reviews."
+        "text": "For enterprise customers, yes. The report can be co-branded or fully white-labeled, with our senior reviewer named as the attesting party."
       }
     },
     {
@@ -222,7 +222,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "name": "What if you don't find anything?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "For a pilot, you don't pay. For an ongoing engagement, \"we didn't find anything new this month\" is a legitimate outcome, and you still get the regenerated audit-ready report for compliance. We'd rather tell you the truth than manufacture findings to justify the invoice."
+        "text": "For a pilot, you don't pay. For an ongoing engagement, "we didn't find anything new this month" is a legitimate outcome, and you still get the regenerated audit-ready report for compliance."
       }
     },
     {
@@ -230,7 +230,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "name": "What if a real attacker finds something you missed?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "It's possible. Nobody finds everything, not us, not Mandiant, not the best human pentester alive. If a bug surfaces in production that we didn't catch, we add it to our regression suite, write up what we missed, and run the engagement again at no cost. We've done this twice; it's how we get better."
+        "text": "It's possible. Nobody finds everything. If a bug surfaces in production that we didn't catch, we add it to our regression suite, write up what we missed, and run the engagement again at no cost."
       }
     },
     {
@@ -238,7 +238,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "name": "Why are you invite-only?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Because we onboard design partners by hand, and our senior reviewers are a finite resource. Once the queue compresses and the platform self-serves on more of the workflow, we'll open up. Today, joining means we can actually give your engagement the attention it deserves."
+        "text": "Because we onboard design partners by hand, and our senior reviewers are a finite resource. Once the platform self-serves on more of the workflow, we'll open up."
       }
     },
     {
@@ -246,7 +246,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "name": "Who's actually on the team?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Senior offensive engineers with 12+ years on web/API/mobile, CVE disclosures across SaaS, fintech, and healthtech, and prior work at the kind of firms most pentest buyers have already worked with. About page lists the names; the report has the named reviewer on the cover."
+        "text": "Senior offensive engineers with 12+ years on web/API/mobile, CVE disclosures across SaaS, fintech, and healthtech, and prior work at the kind of firms most pentest buyers have already worked with."
       }
     },
     {
@@ -254,7 +254,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "name": "I have another question.",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Email us, or use the request-access form. A human reads every one, usually within a few hours during the working week. We don't have a sales BDR layer; the first reply comes from someone who'd actually be working your engagement."
+        "text": "Email us, or use the request-access form. A human reads every one, usually within a few hours during the working week. The first reply comes from someone who'd actually be working your engagement."
       }
     }
   ]
