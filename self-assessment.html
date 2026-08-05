@@ -1,0 +1,1745 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-K8H34NL2");
+    </script>
+    <!-- End Google Tag Manager -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      Are You Pentest Ready? | 3-Minute Readiness Assessment | CredShields
+    </title>
+    <meta
+      name="description"
+      content="12 questions, 3 minutes. Get a scored pentest readiness report and know exactly what to fix before you book a test."
+    />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://one.credshields.com/platform" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="CredShields One" />
+    <meta property="og:url" content="https://one.credshields.com/platform" />
+    <meta
+      property="og:title"
+      content="The AI Penetration Testing Platform · CredShields One"
+    />
+    <meta
+      property="og:description"
+      content="Architecture, pipeline, product screens, and FAQ for CredShields One. AI pentesting with senior human pentesters in the loop."
+    />
+    <meta
+      property="og:image"
+      content="https://one.credshields.com/og-platform.svg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="The AI Penetration Testing Platform · CredShields One"
+    />
+    <meta
+      name="twitter:description"
+      content="Architecture, pipeline, and FAQ for CredShields One. AI pentesting with senior humans in the loop."
+    />
+    <meta
+      name="twitter:image"
+      content="https://one.credshields.com/og-platform.svg"
+    />
+
+    <!-- Theme + icons -->
+    <meta name="theme-color" content="#F4F8F4" />
+    <link rel="apple-touch-icon" href="/images/favicon.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+    <style>
+      :root {
+        --bg: #f4f8f4;
+        --bg-2: #ebf3eb;
+        --surface: #ffffff;
+        --surface-2: #f9fcf9;
+        --border: rgba(10, 26, 12, 0.08);
+        --border-strong: rgba(10, 26, 12, 0.16);
+        --border-green: rgba(46, 125, 14, 0.28);
+        --text: #0a1a0c;
+        --text-dim: #4a6650;
+        --text-faint: #7a9a80;
+        --green: #2e7d0e;
+        --green-2: #5aaa1e;
+        --green-deep: #1e3a24;
+        --lime: #a8ff45;
+        --lime-hover: #90e830;
+        --green-glow: rgba(168, 255, 69, 0.35);
+        --green-wash: rgba(168, 255, 69, 0.18);
+        --ink: #0a1a0c;
+        --ink-2: #0e2412;
+        --amber: #b7791f;
+        --red: #b4381e;
+        --radius: 10px;
+        --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Figtree", system-ui, sans-serif;
+        font-weight: 400;
+        line-height: 1.6;
+        font-size: 16px;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      .container,
+      .self-container {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      .mono {
+        font-family: "JetBrains Mono", monospace;
+      }
+      .self-display {
+        font-family: "Bricolage Grotesque", serif;
+        font-weight: 600;
+        font-variation-settings: "opsz" 96;
+        letter-spacing: -0.03em;
+        line-height: 0.98;
+        color: var(--text);
+      }
+      .self-accent {
+        color: var(--green);
+      }
+      .self-eyebrow {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--text-dim);
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .self-eyebrow::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--lime);
+        box-shadow: 0 0 10px var(--green-glow);
+      }
+      .self-btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 15px 26px;
+        background: var(--lime);
+        color: var(--text);
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: 14px;
+        letter-spacing: -0.005em;
+        border: none;
+        cursor: pointer;
+        font-family: inherit;
+        transition: all 0.25s var(--ease);
+        text-decoration: none;
+      }
+      .self-btn-primary:hover {
+        background: var(--lime-hover);
+        transform: translateY(-1px);
+        box-shadow: 0 8px 24px var(--green-glow);
+      }
+      .self-btn-ghost {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 15px 22px;
+        color: var(--text);
+        font-weight: 500;
+        font-size: 14px;
+        border-radius: 999px;
+        border: 1px solid var(--border-strong);
+        background: var(--surface);
+        cursor: pointer;
+        font-family: inherit;
+        transition: all 0.25s var(--ease);
+        text-decoration: none;
+      }
+      .self-btn-ghost:hover {
+        border-color: var(--green);
+        color: var(--green);
+      }
+
+      /* header */
+      .topnav {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: rgba(244, 248, 244, 0.88);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border);
+      }
+      .topnav .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 64px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: "Bricolage Grotesque", serif;
+        font-weight: 700;
+        font-size: 18px;
+        letter-spacing: -0.02em;
+      }
+      .brand-mark {
+        width: 14px;
+        height: 14px;
+        background: var(--lime);
+        border-radius: 3px;
+        box-shadow: 0 0 12px var(--green-glow);
+      }
+      .nav-note {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--text-faint);
+        letter-spacing: 0.06em;
+      }
+
+      /* hero */
+      .self-hero {
+        margin-top: 70px;
+        padding: 84px 0 56px;
+        position: relative;
+      }
+      .self-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          700px 320px at 75% 10%,
+          var(--green-wash),
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+      .self-hero-grid {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 48px;
+        align-items: center;
+        position: relative;
+      }
+      .self-hero-title {
+        font-size: clamp(40px, 5.4vw, 64px);
+        margin: 20px 0 18px;
+      }
+      .self-hero-sub {
+        font-size: 17px;
+        color: var(--text-dim);
+        max-width: 52ch;
+        margin-bottom: 26px;
+      }
+      .self-hero-ctas {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .self-hero-meta {
+        margin-top: 22px;
+        display: flex;
+        gap: 22px;
+        flex-wrap: wrap;
+      }
+      .self-hm {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11.5px;
+        color: var(--text-dim);
+        letter-spacing: 0.05em;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .self-hm b {
+        color: var(--green);
+        font-weight: 700;
+      }
+
+      /* terminal preview card */
+      .self-terminal {
+        position: relative;
+        background: linear-gradient(180deg, #0e2412 0%, #0a1a0c 100%);
+        border: 1px solid rgba(10, 26, 12, 0.9);
+        border-radius: 14px;
+        overflow: hidden;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 13px;
+        box-shadow: 0 24px 60px rgba(10, 26, 12, 0.18);
+      }
+      .self-term-bar {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 16px;
+        border-bottom: 1px solid rgba(168, 255, 69, 0.14);
+      }
+      .self-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+      .self-dot-r {
+        background: #e0654a;
+      }
+      .self-dot-y {
+        background: #e8c35a;
+      }
+      .self-dot-g {
+        background: #6fcf4c;
+      }
+      .self-term-title {
+        margin-left: 8px;
+        color: #8fa890;
+        font-size: 11px;
+        letter-spacing: 0.08em;
+      }
+      .self-term-body {
+        padding: 20px 22px;
+        color: #c9e7c0;
+        line-height: 1.9;
+      }
+      .self-term-body .self-cm {
+        color: #7a9a80;
+      }
+      .self-term-body .self-ok {
+        color: #a8ff45;
+      }
+      .self-term-body .self-wr {
+        color: #e8c35a;
+      }
+      .self-term-score {
+        font-size: 26px;
+        color: #a8ff45;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+      }
+
+      /* assessment */
+      .self-assess {
+        padding: 26px 0 90px;
+      }
+      .self-panel {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        box-shadow: 0 16px 44px rgba(10, 26, 12, 0.07);
+        max-width: 760px;
+        margin: 0 auto;
+        overflow: hidden;
+      }
+      .self-panel-head {
+        padding: 20px 28px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .self-progress {
+        height: 6px;
+        background: var(--bg-2);
+        border-radius: 99px;
+        flex: 1;
+        min-width: 160px;
+        overflow: hidden;
+      }
+      .self-progress i {
+        display: block;
+        height: 100%;
+        background: linear-gradient(90deg, var(--green-2), var(--lime));
+        width: 0%;
+        transition: width 0.45s var(--ease);
+        border-radius: 99px;
+      }
+      .self-p-label {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--text-dim);
+        letter-spacing: 0.08em;
+      }
+      .self-step {
+        display: none;
+        padding: 34px 32px 30px;
+        animation: fade 0.35s var(--ease);
+      }
+      .self-step.self-active {
+        display: block;
+      }
+      @keyframes fade {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      .self-dim-tag {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 10.5px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--green);
+        margin-bottom: 10px;
+      }
+      .self-q-title {
+        font-family: "Bricolage Grotesque", serif;
+        font-weight: 600;
+        font-size: 24px;
+        letter-spacing: -0.02em;
+        line-height: 1.15;
+        margin-bottom: 20px;
+      }
+      .self-opts {
+        display: grid;
+        gap: 10px;
+      }
+      .self-opt {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 15px 18px;
+        border: 1px solid var(--border-strong);
+        border-radius: 12px;
+        background: var(--surface-2);
+        cursor: pointer;
+        transition: all 0.18s var(--ease);
+        font-size: 15px;
+        font-weight: 500;
+        text-align: left;
+        font-family: inherit;
+        color: var(--text);
+      }
+      .self-opt:hover {
+        border-color: var(--green);
+        background: var(--green-wash);
+      }
+      .self-opt.self-sel {
+        border-color: var(--green);
+        background: var(--green-wash);
+        box-shadow: 0 0 0 1px var(--green);
+      }
+      .self-opt .self-k {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--text-faint);
+        border: 1px solid var(--border-strong);
+        border-radius: 6px;
+        padding: 2px 7px;
+        flex-shrink: 0;
+      }
+      .self-opt.self-sel .self-k {
+        background: var(--lime);
+        color: var(--text);
+        border-color: transparent;
+      }
+      .self-step-foot {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 26px;
+      }
+      .self-back {
+        background: none;
+        border: none;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        color: var(--text-faint);
+        cursor: pointer;
+        letter-spacing: 0.06em;
+      }
+      .self-back:hover {
+        color: var(--text);
+      }
+
+      /* gate */
+      .self-gate-grid {
+        display: grid;
+        gap: 14px;
+        margin-top: 8px;
+      }
+      .self-gate-grid input,
+      .self-gate-grid select {
+        padding: 14px 16px;
+        border: 1px solid var(--border-strong);
+        border-radius: 10px;
+        background: var(--surface-2);
+        font-family: inherit;
+        font-size: 15px;
+        color: var(--text);
+        width: 100%;
+      }
+      .self-gate-grid input:focus,
+      .self-gate-grid select:focus {
+        outline: 2px solid var(--green);
+        border-color: var(--green);
+      }
+      .self-row-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      .self-consent {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        font-size: 12.5px;
+        color: var(--text-dim);
+        margin-top: 4px;
+      }
+      .self-consent input {
+        width: auto;
+        margin-top: 3px;
+      }
+      .gate-note {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--text-faint);
+        letter-spacing: 0.05em;
+        margin-top: 14px;
+        text-align: center;
+      }
+      .self-err {
+        color: var(--red);
+        font-size: 13px;
+        display: none;
+        margin-top: 6px;
+      }
+
+      /* results */
+      .self-res-head {
+        padding: 26px 32px 4px;
+        text-align: center;
+      }
+      .self-score-ring {
+        width: 150px;
+        height: 150px;
+        margin: 6px auto 14px;
+        position: relative;
+      }
+      .self-score-ring svg {
+        transform: rotate(-90deg);
+      }
+      .self-score-num {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+        gap: 5px;
+        font-family: "Bricolage Grotesque", serif;
+        font-weight: 700;
+        font-size: 38px;
+        letter-spacing: -0.03em;
+      }
+      .self-score-num small {
+        font-size: 11px;
+        font-family: "JetBrains Mono", monospace;
+        color: var(--text-faint);
+        letter-spacing: 0.1em;
+        font-weight: 400;
+        line-height: 1;
+      }
+      .self-tier {
+        font-family: "Bricolage Grotesque", serif;
+        font-weight: 600;
+        font-size: 26px;
+        letter-spacing: -0.02em;
+        margin-bottom: 8px;
+      }
+      .self-tier-sub {
+        color: var(--text-dim);
+        max-width: 52ch;
+        margin: 0 auto 8px;
+      }
+      .self-dims {
+        padding: 18px 32px 8px;
+        display: grid;
+        gap: 14px;
+      }
+      .self-dim {
+        display: grid;
+        grid-template-columns: 190px 1fr 46px;
+        gap: 14px;
+        align-items: center;
+      }
+      .self-dim .self-n {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11.5px;
+        letter-spacing: 0.06em;
+        color: var(--text-dim);
+      }
+      .self-dbar {
+        height: 8px;
+        background: var(--bg-2);
+        border-radius: 99px;
+        overflow: hidden;
+      }
+      .self-dbar i {
+        display: block;
+        height: 100%;
+        width: 0%;
+        border-radius: 99px;
+        transition: width 0.9s var(--ease);
+      }
+      .self-dim .self-v {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        color: var(--text);
+        text-align: right;
+      }
+      .self-recs {
+        padding: 20px 32px;
+      }
+      .self-rec {
+        display: flex;
+        gap: 12px;
+        padding: 13px 16px;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        background: var(--surface-2);
+        margin-bottom: 10px;
+        font-size: 14.5px;
+      }
+      .self-rec b {
+        color: var(--green-deep);
+      }
+      .self-rec .self-ic {
+        color: var(--green);
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+      .self-res-cta {
+        padding: 10px 32px 34px;
+        text-align: center;
+      }
+      .self-res-cta .self-btn-primary {
+        margin: 0 6px 10px;
+      }
+      .self-res-note {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--text-faint);
+        margin-top: 12px;
+        letter-spacing: 0.05em;
+      }
+
+      /* trust strip + footer */
+      .strip {
+        border-top: 1px solid var(--border);
+        background: var(--bg-2);
+        padding: 34px 0;
+      }
+      .strip .container {
+        display: flex;
+        gap: 28px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .strip .self-hm b {
+        color: var(--green-deep);
+      }
+      footer {
+        padding: 26px 0 40px;
+        border-top: 1px solid var(--border);
+      }
+      footer .container {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+        font-size: 12.5px;
+        color: var(--text-faint);
+      }
+      footer a {
+        color: var(--text-dim);
+        text-decoration: none;
+      }
+      @media (max-width: 860px) {
+        .self-hero-grid {
+          grid-template-columns: 1fr;
+        }
+        .self-dim {
+          grid-template-columns: 130px 1fr 40px;
+        }
+        .self-row-2 {
+          grid-template-columns: 1fr;
+        }
+      }
+      /* NAV --------------------------- */
+      nav.site {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 50;
+        padding: 18px 0;
+        backdrop-filter: blur(14px);
+        background: rgba(244, 248, 244, 0.82);
+        border-bottom: 1px solid var(--border);
+      }
+      nav.site .inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: "Bricolage Grotesque", serif;
+        font-weight: 700;
+        font-size: 19px;
+        letter-spacing: -0.02em;
+        color: var(--text);
+      }
+      .brand-sub {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 10px;
+        letter-spacing: 0.14em;
+        color: var(--green);
+        background: rgba(168, 255, 69, 0.22);
+        padding: 2px 6px;
+        border-radius: 4px;
+        margin-left: 2px;
+        text-transform: uppercase;
+        border: 1px solid var(--border-green);
+      }
+      .brand-mark {
+        width: 26px;
+        height: 26px;
+        display: grid;
+        place-items: center;
+      }
+      .brand-mark svg {
+        width: 100%;
+        height: 100%;
+      }
+      .brand-logo {
+        height: 46px;
+        width: auto;
+        display: block;
+      }
+      .brand-logo--dark {
+        display: none;
+      }
+      nav.site.nav--hero .brand-logo--light {
+        display: none;
+      }
+      nav.site.nav--hero .brand-logo--dark {
+        display: block;
+      }
+      nav.site ul {
+        display: flex;
+        gap: 28px;
+        list-style: none;
+      }
+      nav.site ul a {
+        font-size: 14px;
+        color: var(--text-dim);
+        text-decoration: none;
+        transition: color 0.2s var(--ease);
+      }
+      nav.site ul a:hover {
+        color: var(--text);
+      }
+      .nav-cta {
+        padding: 10px 18px;
+        border: 1px solid var(--green);
+        color: var(--green);
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.25s var(--ease);
+        background: transparent;
+      }
+      .nav-cta:hover {
+        background: var(--lime);
+        color: var(--text);
+        border-color: var(--lime);
+        box-shadow: 0 4px 18px var(--green-glow);
+      }
+      .nav-cta svg {
+        width: 14px;
+        height: 14px;
+      }
+
+      /* PAGE TAB BAR -------------------- */
+      .pagebar {
+        position: fixed;
+        top: 83px;
+        left: 0;
+        right: 0;
+        z-index: 45;
+        background: rgba(244, 248, 244, 0.9);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--border);
+      }
+      .pagebar .container {
+        display: flex;
+        align-items: center;
+      }
+      .tabs {
+        display: flex;
+        gap: 6px;
+        overflow-x: auto;
+        padding: 10px 0;
+        scrollbar-width: none;
+      }
+      .tabs::-webkit-scrollbar {
+        display: none;
+      }
+      .tab {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        letter-spacing: 0.02em;
+        color: var(--text-dim);
+        padding: 8px 14px;
+        border-radius: 999px;
+        white-space: nowrap;
+        border: 1px solid transparent;
+        transition: all 0.2s var(--ease);
+      }
+      .tab:hover {
+        color: var(--text);
+        background: var(--surface);
+        border-color: var(--border);
+      }
+      .tab.active {
+        background: var(--green-deep);
+        color: #f4f8f4;
+        border-color: var(--green-deep);
+      }
+      .mobsel {
+        display: none;
+      }
+      .subhero {
+        position: relative;
+        padding: 190px 0 80px;
+        overflow: hidden;
+      }
+
+      /* hamburger toggle (mobile only) ----- */
+      .nav-toggle {
+        display: none;
+        background: transparent;
+        border: 0;
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        cursor: pointer;
+        position: relative;
+      }
+      .nav-toggle span {
+        position: absolute;
+        left: 8px;
+        width: 24px;
+        height: 2px;
+        background: var(--text);
+        border-radius: 2px;
+        transition:
+          top 0.25s var(--ease),
+          transform 0.25s var(--ease),
+          opacity 0.2s var(--ease),
+          background 0.2s var(--ease);
+      }
+      .nav-toggle span:nth-child(1) {
+        top: 14px;
+      }
+      .nav-toggle span:nth-child(2) {
+        top: 19px;
+      }
+      .nav-toggle span:nth-child(3) {
+        top: 24px;
+      }
+      nav.site.is-open .nav-toggle span:nth-child(1) {
+        top: 19px;
+        transform: rotate(45deg);
+      }
+      nav.site.is-open .nav-toggle span:nth-child(2) {
+        opacity: 0;
+      }
+      nav.site.is-open .nav-toggle span:nth-child(3) {
+        top: 19px;
+        transform: rotate(-45deg);
+      }
+      nav.site.nav--hero .nav-toggle span {
+        background: #f4f8f4;
+      }
+      .nav-cta-mobile {
+        display: none;
+      }
+
+      /* nav dropdown ----------------------- */
+      .nav-dropdown {
+        position: relative;
+      }
+      .nav-dropdown-trigger {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        cursor: pointer;
+      }
+      .nav-dropdown-trigger svg {
+        width: 12px;
+        height: 12px;
+        transition: transform 0.2s var(--ease);
+      }
+      .nav-dropdown-menu {
+        position: absolute;
+        top: calc(100% + 14px);
+        left: 50%;
+        transform: translateX(-50%) translateY(-6px);
+        min-width: 220px;
+        padding: 8px;
+        background: var(--surface);
+        border: 1px solid var(--border-green);
+        border-radius: 14px;
+        box-shadow:
+          0 18px 40px rgba(46, 125, 14, 0.12),
+          0 4px 14px rgba(10, 26, 12, 0.06);
+        display: flex;
+        flex-direction: column;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition:
+          opacity 0.18s var(--ease),
+          transform 0.18s var(--ease),
+          visibility 0s linear 0.18s;
+        z-index: 50;
+      }
+      .nav-dropdown-menu::before {
+        content: "";
+        position: absolute;
+        bottom: 100%;
+        left: 0;
+        right: 0;
+        height: 14px;
+      }
+      .nav-dropdown-menu a {
+        padding: 9px 12px;
+        border-radius: 8px;
+        font-size: 13px;
+        color: var(--text-dim);
+        white-space: nowrap;
+        transition:
+          background 0.15s var(--ease),
+          color 0.15s var(--ease);
+      }
+      .nav-dropdown-menu a:hover {
+        background: var(--green-wash);
+        color: var(--text);
+      }
+      .nav-dropdown:hover > .nav-dropdown-menu,
+      .nav-dropdown:focus-within > .nav-dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateX(-50%) translateY(0);
+        transition:
+          opacity 0.18s var(--ease),
+          transform 0.18s var(--ease),
+          visibility 0s linear 0s;
+      }
+      .nav-dropdown:hover > .nav-dropdown-trigger svg,
+      .nav-dropdown:focus-within > .nav-dropdown-trigger svg {
+        transform: rotate(180deg);
+      }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Figtree:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="site.css?v=20260430" />
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-4W8HEW6N3R"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-4W8HEW6N3R");
+    </script>
+
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+      (function (c, l, a, r, i, t, y) {
+        c[a] =
+          c[a] ||
+          function () {
+            (c[a].q = c[a].q || []).push(arguments);
+          };
+        t = l.createElement(r);
+        t.async = 1;
+        t.src = "https://www.clarity.ms/tag/" + i;
+        y = l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t, y);
+      })(window, document, "clarity", "script", "wzzvzp82qr");
+    </script>
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-K8H34NL2"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <!-- NAV -->
+    <nav class="site">
+      <div class="container inner">
+        <a href="/" class="brand">
+          <img
+            src="images/cs_one_black_logo.svg"
+            alt="CredShields One"
+            class="brand-logo brand-logo--light"
+          /><img
+            src="images/cs_one_white_logo.svg"
+            alt="CredShields One"
+            class="brand-logo brand-logo--dark"
+          />
+        </a>
+        <ul>
+          <li><a href="/#pipeline">How it works</a></li>
+          <li>
+            <a href="/platform">Platform</a>
+          </li>
+          <li class="nav-dropdown">
+            <a
+              href="#"
+              class="nav-dropdown-trigger"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Services
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </a>
+            <div class="nav-dropdown-menu" role="menu">
+              <a href="/cloud-config-pentest" role="menuitem"
+                >Cloud Config Pentest</a
+              >
+              <a href="/mobile-app-pentest" role="menuitem"
+                >Mobile app pentest</a
+              >
+              <a href="/api-pentest" role="menuitem">API pentest</a>
+              <a href="/llm-pentest" role="menuitem">LLM pentest</a>
+            </div>
+          </li>
+          <li><a href="/#different">Why us</a></li>
+          <li><a href="/#what-we-test">What we test</a></li>
+          <li>
+            <a
+              href="https://discover.credshields.com"
+              target="_blank"
+              rel="noopener"
+              >Blog</a
+            >
+          </li>
+          <li><a href="/#team">Team</a></li>
+          <li class="mobile-only-li">
+            <button type="button" data-request-access class="nav-cta-mobile">
+              Request access
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </button>
+          </li>
+        </ul>
+        <button type="button" data-request-access class="nav-cta">
+          Request access
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </button>
+        <button
+          class="nav-toggle"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+          type="button"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <section class="self-hero" id="main-content">
+      <div class="self-container self-hero-grid">
+        <div>
+          <span class="self-eyebrow">SELF-ASSESSMENT · 12 QUESTIONS</span>
+          <h1 class="self-display self-hero-title">
+            Are you <span class="self-accent">pentest ready?</span>
+          </h1>
+          <p class="self-hero-sub">
+            Most pentests lose a week to unclear scope, missing credentials, and
+            no one on the hook for fixes. Twelve questions tell you whether
+            yours will, and exactly what to prepare so the report lands with
+            proof, not caveats.
+          </p>
+          <div class="self-hero-ctas">
+            <button class="self-btn-primary" onclick="startAssessment()">
+              Start the assessment →
+            </button>
+            <a class="self-btn-ghost" href="https://credshields.com/sample-report"
+              >See a sample report</a
+            >
+          </div>
+          <div class="self-hero-meta">
+            <span class="self-hm"><b>3 min</b> to complete</span>
+            <span class="self-hm"><b>Scored</b> across 4 dimensions</span>
+            <span class="self-hm"><b>Free</b> readiness report</span>
+          </div>
+        </div>
+        <div class="self-terminal" aria-hidden="true">
+          <div class="self-term-bar">
+            <span class="self-dot self-dot-r"></span><span class="self-dot self-dot-y"></span
+            ><span class="self-dot self-dot-g"></span>
+            <span class="self-term-title">readiness_report.txt</span>
+          </div>
+          <div class="self-term-body">
+            <div class="self-cm">$ credshields assess --scope production</div>
+            <div>› scope inventory <span class="self-ok">✓ documented</span></div>
+            <div>› test credentials <span class="self-ok">✓ staged</span></div>
+            <div>
+              › compliance driver <span class="self-ok">SOC 2 · 6 weeks</span>
+            </div>
+            <div>› fix owner <span class="self-wr">⚠ unassigned</span></div>
+            <div style="margin-top: 12px" class="self-cm">// readiness score</div>
+            <div class="self-term-score">78 / 100 · nearly ready</div>
+            <div class="self-cm">1 blocker</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="self-assess" id="assess" hidden>
+      <div class="self-container">
+        <div class="self-panel" id="panel">
+          <div class="self-panel-head">
+            <span class="self-p-label" id="plabel">START WHEN READY</span>
+            <div class="self-progress"><i id="pbar"></i></div>
+          </div>
+          <div id="steps"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="container">
+        <div class="foot-top">
+          <div class="foot-col foot-brand">
+            <a href="/" class="brand">
+              <img
+                src="images/cs_one_black_logo.svg"
+                alt="CredShields One"
+                class="brand-logo"
+              />
+            </a>
+            <p>
+              AI speed. Human depth. Continuous penetration testing for cloud,
+              mobile, and APIs.
+            </p>
+            <div class="socials">
+              <a
+                href="https://www.linkedin.com/company/credshields"
+                target="_blank"
+                rel="noopener"
+                aria-label="LinkedIn"
+                ><svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M20.45 20.45h-3.56v-5.58c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.68H9.35V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12Zm1.78 13.02H3.56V9h3.56v11.45ZM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0Z"
+                  /></svg
+              ></a>
+              <a
+                href="https://x.com/CredShields"
+                target="_blank"
+                rel="noopener"
+                aria-label="X"
+                ><svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M18.9 3H22l-7.6 8.7L23 21h-6.8l-5.3-6.9L4.7 21H1.6l8.1-9.3L1 3h6.9l4.8 6.4L18.9 3Zm-1.2 16h1.9L7.4 4.9H5.4L17.7 19Z"
+                  /></svg
+              ></a>
+              <a
+                href="https://www.instagram.com/credshields/"
+                target="_blank"
+                rel="noopener"
+                aria-label="Instagram"
+                ><svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069ZM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0Zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881Z"
+                  /></svg
+              ></a>
+            </div>
+          </div>
+          <div class="foot-col">
+            <h4>Platform</h4>
+            <ul>
+              <li><a href="/platform">Full platform tour</a></li>
+              <li><a href="/platform#architecture">Architecture</a></li>
+              <li><a href="/platform#product">Product screens</a></li>
+              <li><a href="/platform#safety">Safety</a></li>
+              <li><a href="/platform#integrations">Integrations</a></li>
+              <li><a href="/platform#faq">FAQ</a></li>
+            </ul>
+          </div>
+          <div class="foot-col">
+            <h4>Services</h4>
+            <ul>
+              <li><a href="/cloud-config-pentest">Cloud app pentest</a></li>
+              <li><a href="/mobile-app-pentest">Mobile app pentest</a></li>
+              <li><a href="/api-pentest">API pentest</a></li>
+              <li><a href="/llm-pentest">LLM pentest</a></li>
+              <li>
+                <button type="button" data-request-access>
+                  Request access
+                </button>
+              </li>
+            </ul>
+          </div>
+          <div class="foot-col">
+            <h4>Resources</h4>
+            <ul>
+              <li>
+                <a
+                  href="https://discover.credshields.com"
+                  target="_blank"
+                  rel="noopener"
+                  >Blog</a
+                >
+              </li>
+              <li><a href="/exploit-registry">Exploit registry</a></li>
+              <li><a href="/buyers-guide">Buyer's guide</a></li>
+            </ul>
+          </div>
+          <div class="foot-col">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="/about">About</a></li>
+              <li><a href="/careers">Careers</a></li>
+              <li><a href="/contact">Contact</a></li>
+              <li><a href="/security">Security</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="foot-bottom">
+          <div>
+            © 2026 CredShields Technologies · Built by hackers, for teams that
+            ship fast.
+          </div>
+          <div class="legal">
+            <a href="/privacy">Privacy</a>
+            <a href="/terms">Terms</a>
+            <a href="/security">Security</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script>
+      /* ================= CONFIG: wire these before launch ================= */
+      const LEAD_WEBHOOK = ""; // paste Zapier / Make / HubSpot Forms API endpoint (POST JSON)
+      const CALENDLY_URL = "https://calendly.com/koda-credshields/30min";
+      const SAMPLE_REPORT_URL = "https://credshields.com/sample-report";
+      /* ==================================================================== */
+
+      const DIMS = [
+        "Scope & access",
+        "Driver & timeline",
+        "Current practices",
+        "Fix readiness",
+      ];
+      const QS = [
+        // d = dimension index; options: [label, points]
+        {
+          d: 0,
+          q: "Do you have a current inventory of your internet-facing applications and APIs?",
+          o: [
+            ["Yes, documented and current", 10],
+            ["Partially, we know the big ones", 5],
+            ["No, it lives in people's heads", 0],
+          ],
+        },
+        {
+          d: 0,
+          q: "Can you provide a test environment with realistic data and working credentials?",
+          o: [
+            ["Yes, staging mirrors production", 10],
+            ["Production only, with care", 6],
+            ["Not yet", 0],
+          ],
+        },
+        {
+          d: 0,
+          q: "Do you know which user roles and tenant boundaries matter most to test?",
+          o: [
+            ["Yes, roles and tenants mapped", 10],
+            ["Roughly", 5],
+            ["Haven't thought about it", 0],
+          ],
+        },
+        {
+          d: 1,
+          q: "What's driving this pentest?",
+          o: [
+            ["Compliance deadline or customer requirement", 10],
+            ["Proactive security decision", 7],
+            ["Just exploring", 3],
+          ],
+        },
+        {
+          d: 1,
+          q: "When do you need the report in hand?",
+          o: [
+            ["Inside 4 weeks", 10],
+            ["This quarter", 6],
+            ["No date yet", 2],
+          ],
+        },
+        {
+          d: 1,
+          q: "Which compliance frameworks are in play?",
+          o: [
+            ["SOC 2 / ISO 27001 / PCI / HIPAA, active now", 10],
+            ["Planning for one of them", 5],
+            ["None right now", 2],
+          ],
+        },
+        {
+          d: 2,
+          q: "Is automated vulnerability scanning already running?",
+          o: [
+            ["Yes, in CI or scheduled", 10],
+            ["Occasionally / ad hoc", 5],
+            ["No", 0],
+          ],
+        },
+        {
+          d: 2,
+          q: "When was your last penetration test?",
+          o: [
+            ["Within 12 months", 10],
+            ["Over a year ago", 5],
+            ["Never", 2],
+          ],
+        },
+        {
+          d: 2,
+          q: "Do findings today follow a triage-and-fix process?",
+          o: [
+            ["Yes: owned, tracked, verified", 10],
+            ["Tracked, loosely owned", 5],
+            ["Findings tend to sit", 0],
+          ],
+        },
+        {
+          d: 3,
+          q: "Is engineering capacity allocated for remediation after the test?",
+          o: [
+            ["Yes, sprint time reserved", 10],
+            ["We'll find the time", 5],
+            ["Not planned", 0],
+          ],
+        },
+        {
+          d: 3,
+          q: "Where should findings land?",
+          o: [
+            ["Straight into Jira / Slack / CI", 10],
+            ["Email or PDF is fine", 6],
+            ["Undecided", 3],
+          ],
+        },
+        {
+          d: 3,
+          q: "Is a budget owner identified for security testing?",
+          o: [
+            ["Yes, budget approved or owned", 10],
+            ["In discussion", 5],
+            ["Not yet", 0],
+          ],
+        },
+      ];
+
+      const state = {
+        i: -1,
+        answers: new Array(QS.length).fill(null),
+        lead: null,
+      };
+
+      function getUTM() {
+        const p = new URLSearchParams(location.search),
+          u = {};
+        [
+          "utm_source",
+          "utm_medium",
+          "utm_campaign",
+          "utm_content",
+          "utm_term",
+        ].forEach((k) => {
+          if (p.get(k)) u[k] = p.get(k);
+        });
+        return u;
+      }
+
+      function render() {
+        const steps = document.getElementById("steps");
+        steps.innerHTML = "";
+        QS.forEach((q, idx) => {
+          const div = document.createElement("div");
+          div.className =
+            "self-step" + (state.i === idx ? " self-active" : "");
+          div.innerHTML = `
+      <div class="self-dim-tag">${DIMS[q.d]} · Q${idx + 1} of ${QS.length}</div>
+      <div class="self-q-title">${q.q}</div>
+      <div class="self-opts">${q.o
+        .map(
+          (o, oi) => `
+        <button class="self-opt${state.answers[idx] === oi ? " self-sel" : ""}" onclick="pick(${idx},${oi})">
+          <span class="self-k">${String.fromCharCode(65 + oi)}</span><span>${o[0]}</span>
+        </button>`,
+        )
+        .join("")}
+      </div>
+      <div class="self-step-foot">
+        <button class="self-back" onclick="go(${idx - 1})" ${idx === 0 ? 'style="visibility:hidden"' : ""}>← BACK</button>
+        <span class="self-p-label">${state.answers[idx] !== null ? "SELECT TO CONTINUE ✓" : "SELECT AN ANSWER"}</span>
+      </div>`;
+          steps.appendChild(div);
+        });
+        // gate step
+        const gate = document.createElement("div");
+        gate.className =
+          "self-step" +
+          (state.i === QS.length ? " self-active" : "");
+        gate.innerHTML = `
+    <div class="self-dim-tag">LAST STEP</div>
+    <div class="self-q-title">Your readiness report is scored. Where should we send it?</div>
+    <div class="self-gate-grid">
+      <div class="self-row-2">
+        <input id="f-name" placeholder="Full name" autocomplete="name">
+        <input id="f-company" placeholder="Company" autocomplete="organization">
+      </div>
+      <div class="self-row-2">
+        <input id="f-email" type="email" placeholder="Work email" autocomplete="email">
+        <select id="f-role">
+          <option value="">Your role…</option>
+          <option>Founder / CEO</option><option>CTO / VP Engineering</option>
+          <option>CISO / Security lead</option><option>Compliance / GRC</option>
+          <option>Engineer</option><option>Other</option>
+        </select>
+      </div>
+      <label class="self-consent"><input type="checkbox" id="f-consent">
+        <span>Email me the report and the short readiness series that follows. Unsubscribe anytime. See our <a href="https://credshields.com/privacy" style="color:var(--green)">privacy policy</a>.</span>
+      </label>
+      <div class="self-err" id="gate-err">Please add your name, a valid work email, company, and consent.</div>
+      <button class="self-btn-primary" style="justify-content:center" onclick="submitLead()">See my readiness report →</button>
+    </div>
+    <div class="self-step-foot"><button class="self-back" onclick="go(${QS.length - 1})">← BACK</button><span></span></div>`;
+        steps.appendChild(gate);
+        // results placeholder
+        const res = document.createElement("div");
+        res.id = "results";
+        res.className =
+          "self-step" +
+          (state.i === QS.length + 1 ? " self-active" : "");
+        steps.appendChild(res);
+        // progress
+        const done = state.answers.filter((a) => a !== null).length;
+        const pct =
+          state.i >= QS.length ? 100 : Math.round((done / QS.length) * 100);
+        document.getElementById("pbar").style.width = pct + "%";
+        document.getElementById("plabel").textContent =
+          state.i < 0
+            ? "START WHEN READY"
+            : state.i < QS.length
+              ? `QUESTION ${state.i + 1} / ${QS.length}`
+              : state.i === QS.length
+                ? "ALMOST THERE"
+                : "YOUR REPORT";
+        if (state.i === QS.length + 1) renderResults();
+      }
+
+      function startAssessment() {
+        const assessment = document.getElementById("assess");
+        assessment.hidden = false;
+        state.i = 0;
+        render();
+        assessment.scrollIntoView({ behavior: "smooth" });
+      }
+      function go(i) {
+        state.i = Math.max(0, i);
+        render();
+      }
+      function pick(qi, oi) {
+        state.answers[qi] = oi;
+        state.i = qi + 1;
+        render();
+        document
+          .getElementById("panel")
+          .scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+
+      function scores() {
+        const dim = [0, 0, 0, 0],
+          dmax = [0, 0, 0, 0];
+        let total = 0;
+        QS.forEach((q, i) => {
+          const pts = state.answers[i] !== null ? q.o[state.answers[i]][1] : 0;
+          dim[q.d] += pts;
+          dmax[q.d] += 10;
+          total += pts;
+        });
+        return {
+          total: Math.round((total / (QS.length * 10)) * 100),
+          dims: dim.map((v, i) => Math.round((v / dmax[i]) * 100)),
+        };
+      }
+      function tierOf(t) {
+        if (t >= 70)
+          return {
+            name: "Pentest ready.",
+            color: "var(--green)",
+            sub: "Scope, driver, and fix path are in place. A test booked now converts straight into proof: findings reproduced, fixed, and verified inside your window.",
+            cta: "book",
+          };
+        if (t >= 40)
+          return {
+            name: "Nearly ready.",
+            color: "var(--amber)",
+            sub: "You'd get value from a pentest today, but one or two gaps below would slow the engagement or blunt the report. Clear them first. Most take under a week.",
+            cta: "sample",
+          };
+        return {
+          name: "Not ready yet. That is worth knowing now.",
+          color: "var(--red)",
+          sub: "A pentest today would spend its budget on setup, not findings. The checklist below is the fastest path to readiness; the series we send walks each step.",
+          cta: "checklist",
+        };
+      }
+      function recsFor(s) {
+        const R = [];
+        if (s.dims[0] < 70)
+          R.push([
+            "Scope & access",
+            "Write the one-page scope: internet-facing apps, APIs, the roles and tenant boundaries that matter. Stage credentials before kickoff. Missing access is the #1 cause of lost test days.",
+          ]);
+        if (s.dims[1] < 70)
+          R.push([
+            "Driver & timeline",
+            "Anchor the test to its real deadline (audit window, customer ask). A dated driver gets budget approved and findings fixed.",
+          ]);
+        if (s.dims[2] < 70)
+          R.push([
+            "Current practices",
+            "Turn on baseline scanning before the pentest so paid researcher time goes to what machines can't find: logic, authorization, chained paths.",
+          ]);
+        if (s.dims[3] < 70)
+          R.push([
+            "Fix readiness",
+            "Name the fix owner and reserve sprint capacity now. A finding without an owner is a risk with a report attached.",
+          ]);
+        if (!R.length)
+          R.push([
+            "You're set",
+            "Bring the scope doc to the kickoff call and we can begin the same week: report in 5–7 days, retests free for 90.",
+          ]);
+        return R;
+      }
+
+      function validEmail(e) {
+        return (
+          (/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e) &&
+            !/@(gmail|yahoo|hotmail|outlook)\./i.test(e)) ||
+          /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e)
+        );
+      }
+
+      function submitLead() {
+        const name = document.getElementById("f-name").value.trim(),
+          company = document.getElementById("f-company").value.trim(),
+          email = document.getElementById("f-email").value.trim(),
+          role = document.getElementById("f-role").value,
+          consent = document.getElementById("f-consent").checked;
+        if (!name || !company || !validEmail(email) || !consent) {
+          document.getElementById("gate-err").style.display = "block";
+          return;
+        }
+        const s = scores(),
+          tier = tierOf(s.total);
+        state.lead = {
+          name,
+          company,
+          email,
+          role,
+          consent,
+          score: s.total,
+          dims: Object.fromEntries(DIMS.map((d, i) => [d, s.dims[i]])),
+          tier: tier.name,
+          answers: state.answers.map((a, i) => ({
+            q: QS[i].q,
+            a: QS[i].o[a][0],
+            pts: QS[i].o[a][1],
+          })),
+          source: "pentest-ready-assessment",
+          utm: getUTM(),
+          ts: new Date().toISOString(),
+        };
+        if (LEAD_WEBHOOK) {
+          fetch(LEAD_WEBHOOK, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(state.lead),
+          }).catch(() => {});
+        }
+        console.log("LEAD PAYLOAD →", state.lead);
+        state.i = QS.length + 1;
+        render();
+      }
+
+      function renderResults() {
+        const s = scores(),
+          tier = tierOf(s.total),
+          C = 283;
+        const off = C - (C * s.total) / 100;
+        const pb = document.getElementById("pbar");
+        pb.style.width = s.total + "%";
+        pb.style.background = tier.color;
+        const dimColor = (v) =>
+          v >= 70 ? "var(--green)" : v >= 40 ? "var(--amber)" : "var(--red)";
+        const ctas = {
+          book: `<a class="self-btn-primary" href="${CALENDLY_URL}">Book your scoping call · 15 min →</a>
+          <a class="self-btn-ghost" href="${SAMPLE_REPORT_URL}">See a sample report</a>
+          <div class="self-res-note">HOT PATH · SLOTS SCOPED SAME WEEK</div>`,
+          sample: `<a class="self-btn-primary" href="${SAMPLE_REPORT_URL}">See what the report looks like →</a>
+          <a class="self-btn-ghost" href="${CALENDLY_URL}">Talk it through · 15 min</a>
+          <div class="self-res-note">YOUR GAPS + THE FIX SERIES ARE IN YOUR INBOX</div>`,
+          checklist: `<a class="self-btn-primary" href="mailto:?subject=Pentest readiness">Email me the readiness checklist →</a>
+          <a class="self-btn-ghost" href="${SAMPLE_REPORT_URL}">See a sample report</a>`,
+        };
+        document.getElementById("results").innerHTML = `
+    <div class="self-res-head">
+      <div class="self-score-ring">
+        <svg width="150" height="150"><circle cx="75" cy="75" r="45" fill="none" stroke="var(--bg-2)" stroke-width="10"/>
+        <circle cx="75" cy="75" r="45" fill="none" stroke="${tier.color}" stroke-width="10" stroke-linecap="round"
+          stroke-dasharray="${C}" stroke-dashoffset="${off}" style="transition:stroke-dashoffset 1.1s var(--ease)"/></svg>
+        <div class="self-score-num">${s.total}<small>/ 100</small></div>
+      </div>
+      <div class="self-tier" style="color:${tier.color}">${tier.name}</div>
+      <p class="self-tier-sub">${tier.sub}</p>
+    </div>
+    <div class="self-dims">
+      ${DIMS.map(
+        (d, i) => `<div class="self-dim"><span class="self-n">${d.toUpperCase()}</span>
+        <div class="self-dbar"><i style="background:${dimColor(s.dims[i])};width:${s.dims[i]}%"></i></div>
+        <span class="self-v">${s.dims[i]}%</span></div>`,
+      ).join("")}
+    </div>
+    <div class="self-recs">
+      ${recsFor(s)
+        .map(
+          (r) =>
+            `<div class="self-rec"><span class="self-ic">→</span><span><b>${r[0]}.</b> ${r[1]}</span></div>`,
+        )
+        .join("")}
+    </div>
+    <div class="self-res-cta">${ctas[tier.cta]}</div>`;
+      }
+
+      render();
+    </script>
+  </body>
+</html>
