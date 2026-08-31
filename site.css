@@ -362,7 +362,17 @@
     mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 30%, transparent 75%);
     z-index: 0;
   }
-  .hero .container { display: grid; grid-template-columns: 1.15fr 1fr; gap: 60px; align-items: center; }
+  .hero .container {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 60px;
+    align-items: center;
+    pointer-events: none;
+  }
+  .hero .container a,
+  .hero .container button { pointer-events: auto; }
 
   .page {
     display: none;
@@ -454,24 +464,23 @@
   }
   .hero-trust .dotsep { color: var(--border-strong); }
 
-  /* terminal card */
-  .ascii-animation-wrap {
+  /* Full-hero WebGL shield scene */
+  .hero-globe {
     position: absolute;
-    right: -72px;
-    line-height: 0;
-    width: clamp(300px, 46vw, 640px);
-    max-width: 100%;
-    height: clamp(280px, 38vw, 540px);
-    /* clip-path instead of overflow+border-radius so mix-blend-mode works in Safari
-       (transform/mask-image create compositing layers that break cross-layer blending) */
-    clip-path: inset(0 round 14px);
+    top: 40px;
+    right: -6vw;
+    bottom: -40px;
+    left: 6vw;
+    z-index: 1;
+    overflow: hidden;
+    pointer-events: none;
   }
-  .ascii-animation-wrap video,
-  .ascii-animation-wrap canvas {
+  .hero-globe canvas {
+    position: absolute;
+    inset: 0;
     display: block;
     width: 100% !important;
     height: 100% !important;
-    object-fit: cover;
   }
   .terminal {
     position: relative;
@@ -2896,22 +2905,15 @@
     .hero .container { grid-template-columns: 1fr; gap: 50px; position: relative; z-index: 2; }
     /* Mobile: animation as backdrop — head visible above, ~50% overlaps hero text */
     .hero .container > div:first-child { position: relative; z-index: 2; top: 80px;}
-    .ascii-animation-wrap {
-      position: absolute;
-      top: -70px;
-      left: 50%;
-      right: auto;
-      transform: translateX(-50%);
-      width: 100vw;
-      max-width: none;
-      height: 60%;
-      border-radius: 0;
+    .hero-globe {
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
       opacity: 0.7;
-      pointer-events: none;
       z-index: 0;
     }
-    .ascii-animation-wrap video { object-position: center 25%; }
-    .ascii-animation-wrap::after {
+    .hero-globe::after {
       content: "";
       position: absolute; left: 0; right: 0; bottom: 0; height: 70%;
       background: linear-gradient(180deg, rgba(10,26,12,0) 0%, rgba(10,26,12,0.55) 50%, rgba(10,26,12,0.95) 100%);
