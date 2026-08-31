@@ -96,6 +96,8 @@
     href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Figtree:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="site.css?v=20260828" />
+  <script src="/three.min.js"></script>
+  <script type="module" src="hero-globe.js"></script>
 
   <!-- TrustBox script -->
   <script type="text/javascript" src="https://widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
@@ -233,12 +235,9 @@
           </div>
         </div>
 
-        <div class="ascii-animation-wrap" aria-hidden="true">
-          <video autoplay loop muted playsinline>
-            <source src="hacker_animation.mov" type="video/quicktime">
-            <source src="hacker_animation_alpha.webm" type="video/webm">
-          </video>
-        </div>
+      </div>
+      <div class="hero-globe" aria-hidden="true">
+        <canvas id="hero-globe-canvas"></canvas>
       </div>
     </header>
 
