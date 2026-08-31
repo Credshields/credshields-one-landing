@@ -2845,6 +2845,10 @@
     border-color: var(--green);
     color: var(--green);
   }
+  .trustpilot-widget-wrapper {
+    margin-top: 30px;
+    margin-left: -25px;
+  }
   .foot-bottom {
     display: flex; justify-content: space-between; align-items: center;
     padding-top: 28px; border-top: 1px solid var(--border);
