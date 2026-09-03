@@ -624,7 +624,7 @@ export function initScene(canvas, opts = {}) {
     if (canvas.width !== Math.floor(w * renderer.getPixelRatio()) || canvas.height !== Math.floor(h * renderer.getPixelRatio())) {
       renderer.setSize(w, h, false);
       camera.aspect = w / h;
-      const off = w > 760 ? w * 0.16 : 0; // scene sits right of the copy
+      const off = w > 760 ? w * 0.18 : 0; // scene sits right of the copy
       camera.setViewOffset(w, h, -off, 0, w, h);
       camera.updateProjectionMatrix();
     }
