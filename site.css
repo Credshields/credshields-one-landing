@@ -160,6 +160,11 @@
     transition: color 0.2s var(--ease);
   }
   nav.site ul a:hover { color: var(--text); }
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
   .nav-cta {
     padding: 10px 18px;
     border: 1px solid var(--green);
@@ -2931,6 +2936,7 @@
 
     /* mobile nav: hamburger toggles a slide-down panel containing nav items + CTA */
     .nav-toggle { display: block; }
+    .nav-actions { display: none; }
     nav.site .nav-cta { display: none; }
     nav.site ul {
       position: absolute;
@@ -3584,7 +3590,7 @@
    ============================================= */
 
 .hero {
-  background: linear-gradient(160deg, #0E2412 0%, #0A1A0C 100%);
+  background: #081109;
 }
 
 .hero .hero-grid {
