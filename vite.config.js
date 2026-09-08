@@ -56,7 +56,6 @@ function rewritePageLinksForStaticHosting() {
 }
 
 export default defineConfig({
-  base: '',
   root: '.',
   publicDir: 'public',
   plugins: [rewritePageLinksForStaticHosting()],
