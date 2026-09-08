@@ -17,4 +17,4 @@ jobs:
 
     steps:
       - name: Run production deployment
-        run: ssh infra "cd /home/ubuntu && bash initiate_csone.sh"
+        run: ssh blogs "cd /home/ubuntu && bash initiate_csone.sh"
