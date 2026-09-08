@@ -56,7 +56,7 @@ function rewritePageLinksForStaticHosting() {
 }
 
 export default defineConfig({
-  base: '/credshields-one-landing/',
+  base: '',
   root: '.',
   publicDir: 'public',
   plugins: [rewritePageLinksForStaticHosting()],
