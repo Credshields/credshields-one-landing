@@ -1,0 +1,20 @@
+name: Deploy production
+
+on:
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: production-deployment
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy CSOne landing page
+    runs-on: [self-hosted, ARM64]
+    timeout-minutes: 15
+
+    steps:
+      - name: Run production deployment
+        run: ssh infra "cd /home/ubuntu && bash initiate_csone.sh"
